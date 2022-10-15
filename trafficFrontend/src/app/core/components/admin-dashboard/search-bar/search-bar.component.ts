@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 
-import { CountryService } from '../../../service/country.service';
-
 @Component({
     selector: 'app-search-bar',
     templateUrl: './search-bar.component.html',
@@ -10,12 +8,13 @@ import { CountryService } from '../../../service/country.service';
 })
 export class SearchBarComponent implements OnInit {
     cities: any[] = [];
-
+    filterCities: any[] = [];
     selectedList: SelectItem = { value: '' };
 
-    constructor(private countryService: CountryService) {}
+    constructor() {}
 
     ngOnInit(): void {
+
         this.cities = [
             {
                 label: 'New York',
@@ -29,5 +28,17 @@ export class SearchBarComponent implements OnInit {
             },
             { label: 'Paris', value: { id: 5, name: 'Paris', code: 'PRS' } },
         ];
+    }
+    filterCountry(event: any) {
+        const filtered: any[] = [];
+        const query = event.query;
+        for (let i = 0; i < this.cities.length; i++) {
+            const country = this.cities[i];
+            if (country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+                filtered.push(country);
+            }
+        }
+
+        this.filterCities = filtered;
     }
 }

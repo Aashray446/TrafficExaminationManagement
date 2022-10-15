@@ -12,6 +12,9 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { ListboxModule } from 'primeng/listbox';
 import { DropdownModule } from 'primeng/dropdown';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { UserDetailsComponent } from '../user-details/user-details.component';
+import { UserListComponent } from '../user-list/user-list.component';
+import { ApplicantListComponent } from '../applicant-list/applicant-list.component';
 
 @NgModule({
     imports: [
@@ -27,6 +30,6 @@ import { MultiSelectModule } from 'primeng/multiselect';
         DropdownModule,
         MultiSelectModule,
     ],
-    declarations: [DashboardComponent, SearchBarComponent],
+    declarations: [DashboardComponent, SearchBarComponent, ApplicantListComponent, UserListComponent, UserDetailsComponent],
 })
 export class DashboardModule {}

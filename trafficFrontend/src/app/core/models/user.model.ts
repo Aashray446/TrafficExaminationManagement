@@ -7,17 +7,22 @@ export class User {
     name: string;
     private _role: Role;
     private _token: string;
+    private _tokenExpirationDate : Date;
 
-    constructor(id: number, username: string, password: string, name: string, role: Role, token: string) {
+   constructor(id: number, username: string, password: string, name: string, role: Role, token: string, tokenExpirationDate: Date) {
         this.id = id;
         this.username = username;
         this._password = password;
         this.name = name;
         this._role = role;
         this._token = token;
+        this._tokenExpirationDate = tokenExpirationDate;
     }
 
-    get token(): string {
+    get token() {
+        if( !this._tokenExpirationDate || new Date() > this._tokenExpirationDate) {
+            return null;
+        }
         return this._token;
     }
 

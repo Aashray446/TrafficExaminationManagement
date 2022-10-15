@@ -19,7 +19,7 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Dashboard',
                         icon: 'pi pi-fw pi-home',
-                        routerLink: ['/loggedIn'],
+                        routerLink: ['/admin'],
                     },
                 ],
             },
@@ -29,12 +29,12 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Users',
                         icon: 'pi pi-fw pi-user',
-                        routerLink: ['/uikit/misc'],
+                        routerLink: ['/admin/user-list'],
                     },
                     {
                         label: 'Applicant',
                         icon: 'pi pi-fw pi-database',
-                        routerLink: ['/uikit/misc'],
+                        routerLink: ['/admin/applicant-list'],
                     },
                 ],
             },

@@ -1,0 +1,27 @@
+<div class="col-12">
+    <div class="card">
+        <h5>User Details</h5>
+
+        <p-table [value]="userDetails" scrollDirection="both" [scrollable]="true" scrollHeight="400px" styleClass="mt-3"
+            responsiveLayout="scroll">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width:200px" pFrozenColumn>id</th>
+                    <!-- <th style="width:200px" alignFrozen="left" pFrozenColumn [frozen]="idFrozen">Id</th> -->
+                    <th style="width:200px">username</th>
+                    <th style="width:200px">Password</th>
+                    <th style="width:200px">name</th>
+                    <th style="width:200px">Role</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-user>
+                <tr>
+                    <td style="width:200px" pFrozenColumn class="font-bold">{{user.name}}</td>
+                    <td style="width:200px" alignFrozen="left" pFrozenColumn [frozen]="idFrozen"
+                        [ngClass]="{'font-bold': idFrozen}">{{user.id}}</td>
+                    <!-- <td style="width:200px">{{}}</td> -->
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
