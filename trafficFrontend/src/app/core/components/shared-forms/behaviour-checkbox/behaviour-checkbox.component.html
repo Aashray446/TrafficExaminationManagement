@@ -3,25 +3,25 @@
     <div class="grid formgrid">
         <div class="col-12 md:col-4">
             <div class="field-checkbox">
-                <p-checkbox name="group1" value="-3" [(ngModel)]="userBehaviour.first" id="ny"></p-checkbox>
+                <p-checkbox name="group1" [binary]="true" [(ngModel)]="userBehaviour.first" id="ny"></p-checkbox>
                 <label for="ny"> -3 </label>
             </div>
         </div>
         <div class="col-12 md:col-4">
             <div class="field-checkbox">
-                <p-checkbox name="group1" value="-4" [(ngModel)]="userBehaviour.second" id="sf"></p-checkbox>
+                <p-checkbox name="group1" [binary]="true" [(ngModel)]="userBehaviour.second" id="sf"></p-checkbox>
                 <label for="sf"> -4 </label>
             </div>
         </div>
         <div class="col-12 md:col-4">
             <div class="field-checkbox">
-                <p-checkbox name="group1" value="-3" [(ngModel)]="userBehaviour.third" id="la"></p-checkbox>
+                <p-checkbox name="group1" [binary]="true" [(ngModel)]="userBehaviour.third" id="la"></p-checkbox>
                 <label for="la"> - 3</label>
             </div>
         </div>
         <div class="col-12 md:col-4">
             <div class="field-checkbox">
-                <p-checkbox name="group1" value="fail" [(ngModel)]="userBehaviour.fail" id="la"></p-checkbox>
+                <p-checkbox name="group1" [binary]="true" [(ngModel)]="userBehaviour.fail" id="la"></p-checkbox>
                 <label for="la">Fail</label>
             </div>
         </div>
