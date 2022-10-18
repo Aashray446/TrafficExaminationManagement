@@ -1,6 +1,6 @@
 export interface eightPattern {
     lineTouch: boolean;
-    poleTocuh: boolean;
+    poleTouch: boolean;
     fail: boolean;
     officerId: number;
 }
