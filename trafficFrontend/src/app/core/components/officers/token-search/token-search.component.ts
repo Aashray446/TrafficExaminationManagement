@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 
 @Component({
-    selector: 'app-search-bar',
-    templateUrl: './search-bar.component.html',
-    styleUrls: ['./search-bar.component.scss'],
+  selector: 'app-token-search',
+  templateUrl: './token-search.component.html',
+  styleUrls: ['./token-search.component.scss']
 })
-export class SearchBarComponent implements OnInit {
+export class TokenSearchComponent implements OnInit {
+
     cities: any[] = [];
     filterCities: any[] = [];
     selectedList: SelectItem = { value: '' };
@@ -39,5 +40,4 @@ export class SearchBarComponent implements OnInit {
             }
         }
     }
-
 }

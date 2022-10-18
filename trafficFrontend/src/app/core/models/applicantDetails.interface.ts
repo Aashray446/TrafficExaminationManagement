@@ -1,35 +1,45 @@
+export interface eightPattern {
+    lineTouch: boolean;
+    poleTocuh: boolean;
+    fail: boolean;
+    officerId: number;
+}
+
+export interface trafficLightPattern {
+    uTurn: boolean;
+    trafficLight: boolean;
+    fail: boolean;
+    officerId: number;
+}
+
+export interface rampPattern {
+    breakerOne : boolean;
+    breakerTwo : boolean;
+    fail: boolean;
+    failRemarks: string;
+    officerId: number;
+}
+
+export interface lParkingPattern {
+    onceForwarded: boolean;
+    lineTouchFail: boolean;
+    fail: boolean;
+    officerId: number;
+}
+
+export interface behaviourPattern{
+    first: boolean;
+    second: boolean;
+    third: boolean;
+    fail: boolean;
+    failRemarks: string;
+    officerId: number;
+}
+
 export interface ApplicantDetails {
-    eightPattern: {
-        lineTouch: boolean;
-        poleTocuh: boolean;
-        fail: boolean;
-        officerId: number;
-    },
-    trafficLightPattern: {
-        uTurn: boolean;
-        trafficLight: boolean;
-        fail: boolean;
-        officerId: number;
-    },
-    rampPattern: {
-        breakerOne : boolean;
-        breakerTwo : boolean;
-        fail: boolean;
-        failRemarks: string;
-        officerId: number;
-    },
-    lParkingPattern: {
-        onceForwarded: boolean;
-        lineTouchFail: boolean;
-        fail: boolean;
-        officerId: number;
-    },
-    behaviourPattern: {
-        first: boolean;
-        second: boolean;
-        third: boolean;
-        fail: boolean;
-        failRemarks: string;
-        officerId: number;
-    },
+    eightPattern: eightPattern,
+    trafficLightPattern: trafficLightPattern
+    rampPattern: rampPattern,
+    lParkingPattern: lParkingPattern,
+    behaviourPattern: behaviourPattern;
 }

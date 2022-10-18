@@ -1,4 +1,10 @@
-<div class="card">
-    <h5>Enter User Details</h5>
-    <p-listbox [options]="cities" [(ngModel)]="selectedList" [filter]="true" [showToggleAll]="false"></p-listbox>
+<div class="grid p-fluid">
+    <div class="col-12">
+        <div class="card">
+            <h5>Enter Applicant Details</h5>
+            <p-autoComplete [(ngModel)]="selectedList" [suggestions]="filterCities"
+                (completeMethod)="filterCity($event)" field="name" [dropdown]="true">
+            </p-autoComplete>
+        </div>
+    </div>
 </div>

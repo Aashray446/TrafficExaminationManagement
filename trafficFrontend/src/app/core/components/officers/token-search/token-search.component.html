@@ -1,0 +1,33 @@
+<div class="layout-main-container">
+
+    <div class="layout-main">
+        <div class="grid p-fluid">
+            <div class="col-12">
+                <div class="card">
+                    <h5>Enter Applicant Details</h5>
+                    <p-autoComplete [(ngModel)]="selectedList" [suggestions]="filterCities"
+                        (completeMethod)="filterCity($event)" field="name" [dropdown]="true">
+                    </p-autoComplete>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="grid">
+                <div class="col-12 md:col-4">
+                    <app-applicant-detail></app-applicant-detail>
+                </div>
+                <div class="col-12 md:col-8">
+                    <router-outlet></router-outlet>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <button pButton label="Log Out"></button>
+
+
+</div>
