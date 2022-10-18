@@ -1,1 +1,30 @@
-<p>ramp-checkbox works!</p>
+<div class="card">
+    <h5>Ramp Challenge</h5>
+    <div class="grid formgrid">
+        <div class="col-12 md:col-4">
+            <div class="field-checkbox">
+                <p-checkbox name="group1" [binary]="true" [(ngModel)]="rampPattern.breakerOne" id="ny">
+                </p-checkbox>
+                <label for="ny"> First Breaker ( -5 ) </label>
+            </div>
+        </div>
+        <div class="col-12 md:col-4">
+            <div class="field-checkbox">
+                <p-checkbox name="group1" [binary]="true" [(ngModel)]="rampPattern.breakerTwo" id="sf">
+                </p-checkbox>
+                <label for="sf"> Second Breaker ( -5 ) </label>
+            </div>
+        </div>
+        <div class="col-12 md:col-4">
+            <div class="field-checkbox">
+                <p-checkbox id="fail" [binary]="true" [(ngModel)]="rampPattern.fail"></p-checkbox>
+                <label for="fail"> Fail</label>
+            </div>
+            <div class="field-mulitselect">
+                <p-multiSelect [options]="remarksOptions" [filter]="false" [virtualScroll]="true"
+                    [virtualScrollItemSize]="30" placeholder="Select Remarks">
+                </p-multiSelect>
+            </div>
+        </div>
+    </div>
+</div>

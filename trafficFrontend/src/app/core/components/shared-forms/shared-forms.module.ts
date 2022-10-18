@@ -8,7 +8,7 @@ import { BehaviourCheckboxComponent } from './behaviour-checkbox/behaviour-check
 import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from "primeng/inputtext";
-
+import {MultiSelectModule} from 'primeng/multiselect';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,8 @@ import { InputTextModule } from "primeng/inputtext";
     CommonModule,
     CheckboxModule,
     FormsModule,
-    InputTextModule
+    InputTextModule,
+    MultiSelectModule
   ],
   exports : [
     CheckboxModule,
