@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { trafficLightPattern } from 'src/app/core/models/applicantDetails.interface';
 
 @Component({
   selector: 'app-traffic-checkbox',
@@ -6,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./traffic-checkbox.component.scss']
 })
 export class TrafficCheckboxComponent implements OnInit {
+
+    trafficLightPattern:trafficLightPattern = {
+        uTurn: false,
+        trafficLight: false,
+        fail: false,
+        officerId: 0
+    }
 
   constructor() { }
 

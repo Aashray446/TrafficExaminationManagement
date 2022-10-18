@@ -1,1 +1,25 @@
-<p>traffic-checkbox works!</p>
+<div class="card">
+    <h5>Traffic Lights </h5>
+    <div class="grid formgrid">
+        <div class="col-12 md:col-4">
+            <div class="field-checkbox">
+                <p-checkbox name="group1" [binary]="true" [(ngModel)]="trafficLightPattern.uTurn" id="ny">
+                </p-checkbox>
+                <label for="ny"> U Turn (-10 ) </label>
+            </div>
+        </div>
+        <div class="col-12 md:col-4">
+            <div class="field-checkbox">
+                <p-checkbox name="group1" [binary]="true" [(ngModel)]="trafficLightPattern.trafficLight" id="sf">
+                </p-checkbox>
+                <label for="sf"> Traffic Lights ( -15 )</label>
+            </div>
+        </div>
+        <div class="col-12 md:col-4">
+            <div class="field-checkbox">
+                <p-checkbox name="group1" [binary]="true" [(ngModel)]="trafficLightPattern.fail" id="la"></p-checkbox>
+                <label for="la"> Fail </label>
+            </div>
+        </div>
+    </div>
+</div>
