@@ -20,6 +20,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CheckboxModule } from 'primeng/checkbox';
+import { SharedFormsModule } from '../shared-forms/shared-forms.module';
 
 @NgModule({
     imports: [
@@ -38,6 +39,7 @@ import { CheckboxModule } from 'primeng/checkbox';
         DropdownModule,
         MultiSelectModule,
         AutoCompleteModule,
+        SharedFormsModule
     ],
     declarations: [DashboardComponent, SearchBarComponent, ApplicantListComponent, UserListComponent, UserDetailsComponent, ApplicantProfileComponent],
 })

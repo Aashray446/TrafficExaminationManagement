@@ -26,133 +26,30 @@
         </div>
     </div>
 
-    <div class=" col-12 md:col-6">
+    <div class=" col-12">
         <div class="card p-fluid">
-            <h5>Eight Pattern</h5>
-            <div class="grid formgrid">
-                <div class="col-12 md:col-4">
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" value="New York" [(ngModel)]="valCheck" id="ny"></p-checkbox>
-                        <label for="ny">New York</label>
-                    </div>
-                </div>
-                <div class="col-12 md:col-4">
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" value="San Francisco" [(ngModel)]="valCheck" id="sf">
-                        </p-checkbox>
-                        <label for="sf">San Francisco</label>
-                    </div>
-                </div>
-                <div class="col-12 md:col-4">
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" value="Los Angeles" [(ngModel)]="valCheck" id="la">
-                        </p-checkbox>
-                        <label for="la">Los Angeles</label>
-                    </div>
-                </div>
-            </div>
+
+            <app-eight-checkbox></app-eight-checkbox>
 
             <!-- Behaviour -->
-            <h5>Behaviour</h5>
-            <div class="grid formgrid">
-                <div class="col-12 md:col-4">
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" value="New York" [(ngModel)]="valCheck" id="ny"></p-checkbox>
-                        <label for="ny">New York</label>
-                    </div>
-                </div>
-                <div class="col-12 md:col-4">
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" value="San Francisco" [(ngModel)]="valCheck" id="sf">
-                        </p-checkbox>
-                        <label for="sf">San Francisco</label>
-                    </div>
-                </div>
-                <div class="col-12 md:col-4">
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" value="Los Angeles" [(ngModel)]="valCheck" id="la">
-                        </p-checkbox>
-                        <label for="la">Los Angeles</label>
-                    </div>
-                </div>
-            </div>
+            <app-behaviour-checkbox></app-behaviour-checkbox>
             <!-- Behaviour Ends -->
-        </div>
-    </div>
-    <div class="col-12 md:col-6">
-        <div class="card p-fluid">
+
             <!-- TRAFFIC LIGHT -->
-            <h5>Traffic Light</h5>
-            <div class="grid formgrid">
-                <div class="col-12 md:col-4">
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" value="New York" [(ngModel)]="valCheck" id="ny"></p-checkbox>
-                        <label for="ny">New York</label>
-                    </div>
-                </div>
-                <div class="col-12 md:col-4">
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" value="San Francisco" [(ngModel)]="valCheck" id="sf"></p-checkbox>
-                        <label for="sf">San Francisco</label>
-                    </div>
-                </div>
-                <div class="col-12 md:col-4">
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" value="Los Angeles" [(ngModel)]="valCheck" id="la"></p-checkbox>
-                        <label for="la">Los Angeles</label>
-                    </div>
-                </div>
-            </div>
+
+            <app-traffic-checkbox></app-traffic-checkbox>
+
             <!-- TRAFFIC LIGHT ENDS -->
 
             <!-- RAMP  -->
-            <h5>Ramp</h5>
-            <div class="grid formgrid">
-                <div class="col-12 md:col-4">
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" value="New York" [(ngModel)]="valCheck" id="ny"></p-checkbox>
-                        <label for="ny">New York</label>
-                    </div>
-                </div>
-                <div class="col-12 md:col-4">
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" value="San Francisco" [(ngModel)]="valCheck" id="sf"></p-checkbox>
-                        <label for="sf">San Francisco</label>
-                    </div>
-                </div>
-                <div class="col-12 md:col-4">
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" value="Los Angeles" [(ngModel)]="valCheck" id="la"></p-checkbox>
-                        <label for="la">Los Angeles</label>
-                    </div>
-                </div>
-            </div>
+            <app-ramp-checkbox></app-ramp-checkbox>
             <!-- RAMP ENDS -->
 
             <!-- L-parking -->
-            <h5>L Parking</h5>
-            <div class="grid formgrid">
-                <div class="col-12 md:col-4">
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" value="New York" [(ngModel)]="valCheck" id="ny"></p-checkbox>
-                        <label for="ny">New York</label>
-                    </div>
-                </div>
-                <div class="col-12 md:col-4">
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" value="San Francisco" [(ngModel)]="valCheck" id="sf"></p-checkbox>
-                        <label for="sf">San Francisco</label>
-                    </div>
-                </div>
-                <div class="col-12 md:col-4">
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" value="Los Angeles" [(ngModel)]="valCheck" id="la"></p-checkbox>
-                        <label for="la">Los Angeles</label>
-                    </div>
-                </div>
-            </div>
+            <app-lparking-checkbox></app-lparking-checkbox>
             <!-- L-parking Ends -->
             <button pButton label="Update"></button>
+
         </div>
     </div>
 </div>

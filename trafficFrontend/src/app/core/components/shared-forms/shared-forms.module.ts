@@ -27,8 +27,14 @@ import {MultiSelectModule} from 'primeng/multiselect';
   ],
   exports : [
     CheckboxModule,
+    MultiSelectModule,
     FormsModule,
     InputTextModule,
+    EightCheckboxComponent,
+    TrafficCheckboxComponent,
+    RampCheckboxComponent,
+    LparkingCheckboxComponent,
+    BehaviourCheckboxComponent,
   ]
 })
 export class SharedFormsModule { }

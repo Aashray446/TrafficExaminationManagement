@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "ngx-webcam": "^0.4.1"
+  }
+}

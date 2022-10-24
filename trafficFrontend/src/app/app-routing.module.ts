@@ -20,6 +20,7 @@ import { AppLayoutComponent } from './layout/app.layout.component';
                         },
                     ],
                 },
+                {path: 'mid-officer', loadChildren: () => import('./core/components/mid-officer/mid-officer.module').then( (m) => m.MidOfficerModule)},
                 {path: 'officers', loadChildren: () => import('./core/components/officers/officers.module').then((m) => m.OfficersModule)},
                 { path: '**', redirectTo: 'pages/notfound' },
             ],
