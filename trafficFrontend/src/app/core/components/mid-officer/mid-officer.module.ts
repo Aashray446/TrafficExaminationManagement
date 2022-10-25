@@ -20,6 +20,8 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {WebcamModule} from 'ngx-webcam';
 
+
+
 @NgModule({
   declarations: [
     MidOfficerComponent,

@@ -9,8 +9,8 @@ export class ApplicantService {
 
     currentApplicantsChanged = new Subject<Applicant[]>();
     currentApplicants: Applicant[] = [
-        new Applicant(45645, "Aashrsya", '4565456', 45, 'bloabloa'),
-        new Applicant(45645, "Aashrsya", '4565456', 45, 'bloabloa'),
+        new Applicant(1, "Aashrsya", '4565456', 45, 'bloabloa'),
+        new Applicant(45, "Aashrsya", '4565456', 456, 'bloabloa'),
     ];
 
   constructor() { }
