@@ -12,8 +12,8 @@ export class UserService {
 
   constructor() {
     this.currentUsers = [
-      new User(1,  'aashray@gmail.com', 'aashray', 'Aashray', Role.Admin, '1', new Date()),
-      new User(2,  'aashraykatiyar@gmail.com', 'aashray', 'Aashray Katiyar', Role.EightOfficer, '2', new Date()),
+      new User(1,  'aashray@gmail.com', 'aashray', 'Aashray', Role.Admin),
+      new User(2,  'aashraykatiyar@gmail.com', 'aashray', 'Aashray Katiyar', Role.EightOfficer),
     ];
 }
 
