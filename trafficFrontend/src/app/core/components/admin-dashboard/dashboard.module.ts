@@ -11,7 +11,6 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { ListboxModule } from 'primeng/listbox';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { UserDetailsComponent } from '../user-details/user-details.component';
-import { UserListComponent } from '../user-list/user-list.component';
 import { ApplicantListComponent } from '../applicant-list/applicant-list.component';
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { ApplicantProfileComponent } from '../applicant-profile/applicant-profile.component';
@@ -21,6 +20,9 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CheckboxModule } from 'primeng/checkbox';
 import { SharedFormsModule } from '../shared-forms/shared-forms.module';
+
+// ---------------
+
 
 @NgModule({
     imports: [
@@ -41,6 +43,6 @@ import { SharedFormsModule } from '../shared-forms/shared-forms.module';
         AutoCompleteModule,
         SharedFormsModule
     ],
-    declarations: [DashboardComponent, SearchBarComponent, ApplicantListComponent, UserListComponent, UserDetailsComponent, ApplicantProfileComponent],
+    declarations: [DashboardComponent, SearchBarComponent, ApplicantListComponent, UserDetailsComponent, ApplicantProfileComponent],
 })
 export class DashboardModule {}
