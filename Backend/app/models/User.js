@@ -18,24 +18,12 @@ const User = database.define(
 			type: DataTypes.STRING(255),
 			allowNull: false
 		},
-
-		firstName: {
+		name: {
 			type: DataTypes.STRING(80),
 			allowNull: true
 		},
-		lastName: {
-			type: DataTypes.STRING(175),
-			allowNull: true
-		},
-
-		// Example of virtual field:
-		fullName: {
-			type: DataTypes.VIRTUAL,
-			get: function() {
-				const firstName = this.getDataValue("firstName");
-				const lastName = this.getDataValue("lastName");
-				return `${(firstName || "" ).trim()} ${(lastName || "").trim()}`.trim();
-			}
+		role: {
+			type: DataTypes.STRING(80),
 		}
 	},
 	{
@@ -43,7 +31,6 @@ const User = database.define(
 		timestamps: true,
 		// Only allow 'soft delete'
 		// (set of 'deletedAt' field, insted of the real deletion).
-		paranoid: true
 	}
 );
 
@@ -62,11 +49,11 @@ User.associate = (models) => {
 	});
 }
 
-User.findById = function(id) {
+User.findById = function (id) {
 	return this.findByPk(id);
 }
 
-User.findOneByEmail = function(email) {
+User.findOneByEmail = function (email) {
 	const query = {
 		where: {
 			email
@@ -77,7 +64,7 @@ User.findOneByEmail = function(email) {
 // Static methods\
 
 // Instance methods:
-User.prototype.toJSON = function() {
+User.prototype.toJSON = function () {
 	const values = { ...this.get() };
 	delete values.password;
 	return values;
