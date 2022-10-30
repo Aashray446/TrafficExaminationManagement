@@ -3,4 +3,6 @@
  */
 require('./User');
 require('./DisabledRefreshToken');
+require('./Applicant');
+require('./ApplicantDetails')
 // Add your models here ...
