@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Table } from 'primeng/table';
 import {MessageService} from 'primeng/api';
 import { User } from '../../models/user.model';
@@ -19,6 +19,8 @@ export class UserListComponent implements OnInit {
 
     deleteProductsDialog: boolean = false;
 
+    createNewUser : boolean = false;
+
     // Users: User[] = [];
     Users : User[] = [];
 
@@ -35,14 +37,19 @@ export class UserListComponent implements OnInit {
 
     roles;
 
-    role = Role;
-
     constructor(private messageService: MessageService, private UserService:UserService) {
-        this.roles = Object.keys(this.role);
+        this.UserService.currentUsers.subscribe((data) => {
+            this.Users = data;
+        });
+        this.roles = Object.keys(Role);
      }
 
     ngOnInit() {
-        this.Users = this.UserService.getUsers();
+        this.UserService.currentUsers.subscribe((data) => {
+            this.Users = data;
+            console.log(this.Users)
+        });
+        this.UserService.getUsers();
         this.cols = [
             { field: 'UserId', header: 'UserId' },
             { field: 'Name', header: 'Name' },
@@ -67,6 +74,7 @@ export class UserListComponent implements OnInit {
         this.User = {};
         this.submitted = false;
         this.productDialog = true;
+        this.createNewUser = true;
     }
 
     deleteSelectedUsers() {
@@ -92,40 +100,69 @@ export class UserListComponent implements OnInit {
 
     confirmDelete() {
         this.deleteProductDialog = false;
-        this.Users = this.Users.filter(val => val.id !== this.User.id);
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Deleted', life: 3000 });
+
+        this.UserService.deleteUser(this.User).subscribe({
+            next: (data) => {
+                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Deleted', life: 3000 });
+                this.UserService.getUsers();
+            },
+            error: (error) => {
+                console.log(error);
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message, life: 3000 });
+            }
+        });
         this.User = {};
     }
 
     hideDialog() {
         this.productDialog = false;
         this.submitted = false;
+        this.createNewUser = false;
 
     }
 
     saveUser() {
         this.submitted = true;
 
-        if (this.User.name?.trim()) {
-            if (this.User.id) {
-                // @ts-ignore
-                this.User.inventoryStatus = this.User.inventoryStatus.value ? this.User.inventoryStatus.value : this.User.inventoryStatus;
-                this.Users[this.findIndexById(this.User.id)] = this.User;
-                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Updated', life: 3000 });
-            } else {
-                this.User.id = this.createId();
-                this.User.code = this.createId();
-                this.User.image = 'User-placeholder.svg';
-                // @ts-ignore
-                this.User.inventoryStatus = this.User.inventoryStatus ? this.User.inventoryStatus.value : 'INSTOCK';
-                this.Users.push(this.User);
-                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Created', life: 3000 });
-            }
-
-            this.Users = [...this.Users];
-            // this.prodcutDialog = false;
-            this.User = {};
+        // IF NEW USER
+        if(this.createNewUser){
+            this.UserService.createUser(this.User)
+            .subscribe({
+                next: () => {
+                    this.messageService.add({severity:'success', summary: 'Successful', detail: 'User Created', life: 3000});
+                    this.UserService.getUsers();
+                    this.User = {};
+                    this.productDialog = false;
+                },
+                error: err => {
+                    console.log(err);
+                    this.messageService.add({severity:'error', summary: 'Error', detail: err.error.error.message, life: 3000});
+                    this.UserService.getUsers();
+                }
+            })
+            return;
         }
+
+           this.UserService.updateUsers(this.User)
+            .subscribe({
+                next: () => {
+                    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Updated', life: 3000 });
+                    this.productDialog = false;
+                    this.User = {};
+                    this.UserService.getUsers();
+                },
+                error: error => {
+                    this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.message, life: 3000 });
+                    this.productDialog = false;
+                    this.User = {};
+                }
+            });;
+
+
+
+            // this.Users = [...this.Users];
+            // this.prodcutDialog = false;
+            // this.User = {};
     }
 
     findIndexById(id: number): number {
@@ -156,5 +193,11 @@ export class UserListComponent implements OnInit {
     printRole(User:User){
         console.log(User.role)
     }
+
+
+    onDestroy() {
+        this.UserService.currentUsers.unsubscribe();
+    }
+
 
 }

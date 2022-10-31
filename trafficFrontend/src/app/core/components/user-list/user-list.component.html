@@ -78,7 +78,7 @@
         </div>
 
         <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="User Details" [modal]="true"
-            class="p-fluid">
+            [closable]="false" class="p-fluid">
             <ng-template pTemplate="content">
                 <div class="field">
 
@@ -86,7 +86,8 @@
                         <label for="name">Role</label>
                         <!-- <input type="text" pInputText id="name" [(ngModel)]="User.role" required autofocus
                             [ngClass]="{'ng-invalid ng-dirty' : submitted && !User.role}" /> -->
-                        <p-dropdown [options]="this.roles" [(ngModel)]="User.role"></p-dropdown>
+                        <p-dropdown [options]="this.roles" [(ngModel)]="User.role">
+                        </p-dropdown>
 
                         <small class="ng-dirty ng-invalid" *ngIf="submitted && !User.role">Name is required.</small>
                     </div>
@@ -97,10 +98,16 @@
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !User.name">Name is required.</small>
                 </div>
                 <div class="field">
-                    <label for="name">Email</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="User.email" required autofocus
+                    <label for="email">Email</label>
+                    <input type="text" pInputText id="email" [(ngModel)]="User.email" required autofocus
                         [ngClass]="{'ng-invalid ng-dirty' : submitted && !User.email}" />
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !User.email">Name is required.</small>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !User.email">Email is required.</small>
+                </div>
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input type="password" pInputText id="Password" [(ngModel)]="User.password" required autofocus
+                        [ngClass]="{'ng-invalid ng-dirty' : submitted && !User.password}" />
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !User.password">Password is required.</small>
                 </div>
 
 

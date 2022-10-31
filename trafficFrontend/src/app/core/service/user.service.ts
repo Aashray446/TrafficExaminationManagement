@@ -1,35 +1,49 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
-import { Role } from '../models/role.enum';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { MessageService } from 'primeng/api';
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
 
- currentUsersChanged = new Subject<User[]>();
- private currentUsers: User[];
+ currentUsers = new Subject<User[]>();
 
-  constructor() {
-    this.currentUsers = [
-      new User(1,  'aashray@gmail.com', 'aashray', 'Aashray', Role.Admin),
-      new User(2,  'aashraykatiyar@gmail.com', 'aashray', 'Aashray Katiyar', Role.EightOfficer),
-    ];
-}
 
-    public getUsers(): User[] {
-        return this.currentUsers;
+  constructor(private _http : HttpClient, private messageService: MessageService) {}
+
+    public async getUsers() {
+        this._http.get<User[]>(environment.apiBaseUrl + '/private/users/getAllUsers').subscribe((data:any) => {
+            this.currentUsers.next(data.content.users[0]);
+        });
     }
 
-    public addUser(user:User): void {
-        this.currentUsers.push(user);
-        this.currentUsersChanged.next(this.currentUsers);
+    public updateUsers(user: User){
+        return this._http.post<User[]>(environment.apiBaseUrl + '/private/users/update', user)
     }
 
-    public updateUser(user:User): void {
-        let index = this.currentUsers.findIndex(u => u.id === user.id);
-        this.currentUsers[index] = user;
-        this.currentUsersChanged.next(this.currentUsers);
+    public createUser(user: User){
+        return this._http.post<User[]>(environment.apiBaseUrl + '/private/users/register', user)
     }
+
+    public deleteUser(user: User){
+        return this._http.post<User[]>(environment.apiBaseUrl + '/private/users/delete', user)
+    }
+
+
+
+    // public addUser(user:User): void {
+    //     this.currentUsers.push(user);
+    //     this.currentUsersChanged.next(this.currentUsers);
+    // }
+
+    // public updateUser(user:User): void {
+    //     let index = this.currentUsers.findIndex(u => u.id === user.id);
+    //     this.currentUsers[index] = user;
+    //     this.currentUsersChanged.next(this.currentUsers);
+    // }
 
 }

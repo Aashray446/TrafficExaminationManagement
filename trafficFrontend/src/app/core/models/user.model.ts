@@ -19,5 +19,12 @@ export class User {
         return this._role;
     }
 
+    get password(): boolean{
+        if(this._password == null || this._password == undefined || this._password == "") {
+            return false;
+        }
+        return true;
+    }
+
 
 }

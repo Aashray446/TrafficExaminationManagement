@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Applicant } from '../models/applicant.model';
 import { Subject } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
