@@ -39,7 +39,10 @@ function UsersController() {
 				errorMessage = "Such user doesn't exist";
 				statusCode = 400;
 				break;
-
+			case ("UserAlreadyExists"):
+				errorMessage = "User with such email already exists";
+				statusCode = 401;
+				break;
 			// Perform your custom processing here...
 
 			default:
@@ -58,6 +61,17 @@ function UsersController() {
 
 	// Auth:
 	const _register = async (req, res) => {
+
+		if (req?.token?.role !== 'admin') {
+			return createErrorResponse({
+				res,
+				error: {
+					message: 'You are not allowed to perform this action'
+				},
+				status: 401
+			});
+		}
+
 		try {
 			// Extract request input:
 			const email = req.body?.email
@@ -85,6 +99,7 @@ function UsersController() {
 		}
 		catch (error) {
 			console.error("UsersController._create error: ", error);
+			error.name = "UserAlreadyExists";
 			return _processError(error, req, res);
 		}
 	}
@@ -119,6 +134,30 @@ function UsersController() {
 			console.error("UsersController._login error: ", error);
 			return _processError(error, req, res);
 		}
+	}
+
+	const _update = async (req, res) => {
+
+		const UserData = req.body;
+
+		try {
+
+			const status = await usersFacade.update(UserData);
+
+			return createOKResponse({
+				res,
+				content: {
+					status: status
+				}
+			});
+		}
+		catch (error) {
+
+			console.error("UsersController._login error: ", error);
+			return _processError(error, req, res);
+
+		}
+
 	}
 
 	const _validate = async (req, res) => {
@@ -214,20 +253,17 @@ function UsersController() {
 	// Auth\
 
 	// Protected:
-	const _getFullName = async (req, res) => {
+	const _getAll = async (req, res) => {
 		try {
-			// Unwrap user's id.
-			const userId = req?.token?.id;
 
-			// Try to get full name.
-			const [fullName] = await usersFacade.getFullName({ userId });
+			// get all users
+			const users = await usersFacade.getAllUsers();
 
-			console.log({ fullName });
 
 			return createOKResponse({
 				res,
 				content: {
-					fullName
+					users
 				}
 			});
 		}
@@ -237,6 +273,32 @@ function UsersController() {
 		}
 	}
 
+	const _delete = async (req, res) => {
+		try {
+			const UserData = req.body;
+
+			const status = await usersFacade.delete(UserData);
+
+			if (!status) {
+				const err = new Error("User not found");
+				err.name = "NotFound";
+				throw err;
+			}
+
+			return createOKResponse({
+				res,
+				content: {
+					status: true
+				}
+			});
+		}
+		catch (error) {
+			console.error("UsersController._delete error: ", error);
+			return _processError(error, req, res);
+		}
+	}
+
+
 	return {
 		// Auth:
 		register: _register,
@@ -244,8 +306,9 @@ function UsersController() {
 		validate: _validate,
 		refresh: _refresh,
 		logout: _logout,
-
+		update: _update,
+		delete: _delete,
 		// Protected:
-		getFullName: _getFullName
+		getAllUsers: _getAll
 	}
 }

@@ -1,3 +1,6 @@
 module.exports = {
-	'GET /users/name': 'UsersController.getFullName',
+	'GET /users/getAllUsers': 'UsersController.getAllUsers',
+	'POST /users/register': 'UsersController.register',
+	'POST /users/update': 'UsersController.update',
+	'POST /users/delete': 'UsersController.delete',
 };

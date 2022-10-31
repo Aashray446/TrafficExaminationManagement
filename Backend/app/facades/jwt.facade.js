@@ -24,13 +24,13 @@ async function _issueAccessToken({ refreshToken, user }) {
 		if (!!refreshToken) {
 			const payload = {
 				id: refreshToken?.id,
-				roles: refreshToken?.roles ?? []
+				role: refreshToken?.role
 			};
 			newAccessToken = await JWT.issueAccessToken(payload);
 		}
 		// If user was provided:
 		else if (!!user) {
-			const payload = { id: user?.id, roles: user?.roles };
+			const payload = { id: user?.id, role: user?.role };
 			newAccessToken = await JWT.issueAccessToken(payload);
 		}
 		else {
@@ -63,7 +63,7 @@ async function _issueTokens({ user }) {
 		let payload = {};
 
 		if (!!user) {
-			payload = { id: user?.id };
+			payload = { id: user?.id, role: user?.role };
 		}
 		else {
 			const err = new Err('No "user" provided for JWT issue.');

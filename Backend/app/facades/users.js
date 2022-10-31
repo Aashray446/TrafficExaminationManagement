@@ -13,9 +13,11 @@ module.exports = {
 	register: _register,
 	login: _login,
 	// Auth\
+	update: _update,
+	delete: _delete,
 
 	// Private:
-	getFullName: _getFullName
+	getAllUsers: _getAllUsers
 
 	// Add your methods here...
 
@@ -84,29 +86,76 @@ async function _login({ email, password }) {
 		return Promise.reject(error);
 	}
 }
-// Auth\
 
-// Private:
-async function _getFullName({ userId }) {
+
+async function _update(user) {
 	try {
 		// Try to find user.
-		const user = await User.findById(userId);
+		let result;
+		if (!user.password) {
+			result = await User.update(
+				{ name: user.name, email: user.email, role: user.role },
+				{ where: { id: user.id } }
+			);
+		}
+		else {
 
-		if (!user) {
-			// If no such user was found, throw error with name UserNotFound:
+			result = await User.update(
+				{ name: user.name, email: user.email, role: user.role, password: user.password },
+				{ where: { id: user.id } }
+			);
+
+		}
+
+
+
+		//  If user not found, throw error with name UserNotFound:
+		if (result[0] == 0) {
 			const err = new Err('User not found');
 			err.name = "UserNotFound";
 			throw err;
 		}
 
-		// Get value of virtual field 'fullName'.
-		const fullName = user.fullName;
+		// Send output.
+		return Promise.resolve([result]);
+	}
+	catch (error) {
+		return Promise.reject(error);
+	}
+
+}
+
+// Get all Users
+async function _getAllUsers() {
+	try {
+		// Try to find user.
+		const users = await User.findAll();
 
 		// Send output.
-		return Promise.resolve([fullName]);
+		return Promise.resolve([users]);
 	}
 	catch (error) {
 		return Promise.reject(error);
 	}
 }
-// Private\
+
+// Delete
+async function _delete(user) {
+	try {
+		// Try to find user.
+		const result = await User.destroy({ where: { id: user.id } });
+
+		//  If user not found, throw error with name UserNotFound:
+		if (result == 0) {
+			const err = new Err('User not found');
+			err.name = "UserNotFound";
+			throw err;
+		}
+
+		// Send output.
+		return Promise.resolve([result]);
+	}
+	catch (error) {
+		return Promise.reject(error);
+	}
+}
