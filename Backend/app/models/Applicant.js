@@ -6,7 +6,7 @@ const database = require('#services/db.service');
 const Applicant = database.define(
     'Applicant',
     {
-        appicantId: {
+        applicantId: {
             type: DataTypes.STRING(80),
             unique: true,
             allowNull: false,
