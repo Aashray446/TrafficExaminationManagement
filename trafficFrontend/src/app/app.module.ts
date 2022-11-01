@@ -8,6 +8,7 @@ import { AuthInterceptor } from './core/service/auth-interceptor';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { AuthGuard } from './core/service/auth.guard';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { MessageService } from 'primeng/api';
             provide : HTTP_INTERCEPTORS,
             useClass : AuthInterceptor,
             multi : true
-        }
+        },
+        AuthGuard
 
     ],
     bootstrap: [AppComponent],

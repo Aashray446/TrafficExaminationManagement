@@ -33,6 +33,10 @@ export class UserService {
         return this._http.post<User[]>(environment.apiBaseUrl + '/private/users/delete', user)
     }
 
+    public login(userData:any) {
+        return this._http.post<User[]>(environment.apiBaseUrl + '/auth/login', userData)
+    }
+
 
 
     // public addUser(user:User): void {

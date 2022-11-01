@@ -133,13 +133,16 @@ export class UserListComponent implements OnInit {
                     this.UserService.getUsers();
                     this.User = {};
                     this.productDialog = false;
+                    this.createNewUser = false;
                 },
                 error: err => {
                     console.log(err);
                     this.messageService.add({severity:'error', summary: 'Error', detail: err.error.error.message, life: 3000});
                     this.UserService.getUsers();
+                    this.createNewUser = false;
                 }
             })
+
             return;
         }
 
@@ -159,7 +162,7 @@ export class UserListComponent implements OnInit {
             });;
 
 
-
+            this.createNewUser = false;
             // this.Users = [...this.Users];
             // this.prodcutDialog = false;
             // this.User = {};

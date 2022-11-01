@@ -2,6 +2,7 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { NotfoundComponent } from './core/components/notfound/notfound.component';
 import { AppLayoutComponent } from './layout/app.layout.component';
+import { AuthGuard } from './core/service/auth.guard';
 
 @NgModule({
     imports: [
@@ -17,11 +18,12 @@ import { AppLayoutComponent } from './layout/app.layout.component';
                                 import(
                                     './core/components/admin-dashboard/dashboard.module'
                                 ).then((m) => m.DashboardModule),
+                            canActivate: [AuthGuard]
                         },
                     ],
                 },
-                {path: 'mid-officer', loadChildren: () => import('./core/components/mid-officer/mid-officer.module').then( (m) => m.MidOfficerModule)},
-                {path: 'officers', loadChildren: () => import('./core/components/officers/officers.module').then((m) => m.OfficersModule)},
+                {path: 'mid-officer', loadChildren: () => import('./core/components/mid-officer/mid-officer.module').then( (m) => m.MidOfficerModule), canActivate: [AuthGuard]},
+                {path: 'officers', loadChildren: () => import('./core/components/officers/officers.module').then((m) => m.OfficersModule), canActivate: [AuthGuard]},
                 { path: '**', redirectTo: 'pages/notfound' },
             ],
             {
