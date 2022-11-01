@@ -37,7 +37,7 @@ export class MidOfficerComponent implements OnInit {
     constructor(private messageService: MessageService, private applicantService:ApplicantService) { }
 
     ngOnInit() {
-        this.applicants = this.applicantService.getApplicants();
+        this.getApplicants();
         this.cols = [
             { field: 'applicantId', header: 'applicantId' },
             { field: 'Name', header: 'Name' },
@@ -46,6 +46,19 @@ export class MidOfficerComponent implements OnInit {
             { field: 'inventoryStatus', header: 'Status' }
         ];
     }
+
+
+   getApplicants =  async () => {
+        this.applicantService.getApplicants().subscribe( {
+            next: (data:any) => {
+                this.applicants = data.content.applicant[0];
+                console.log(this.applicants);
+            },
+            error: (err) => {
+                console.log(err);
+            }
+        })
+   }
 
 
     onFileSelected(event:any)
@@ -101,26 +114,12 @@ export class MidOfficerComponent implements OnInit {
     saveapplicant() {
         this.submitted = true;
 
-        if (this.applicant.name?.trim()) {
-            if (this.applicant.id) {
-                // @ts-ignore
-                this.applicant.inventoryStatus = this.applicant.inventoryStatus.value ? this.applicant.inventoryStatus.value : this.applicant.inventoryStatus;
-                this.applicants[this.findIndexById(this.applicant.id)] = this.applicant;
-                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'applicant Updated', life: 3000 });
-            } else {
-                this.applicant.id = this.createId();
-                this.applicant.code = this.createId();
-                this.applicant.image = 'applicant-placeholder.svg';
-                // @ts-ignore
-                this.applicant.inventoryStatus = this.applicant.inventoryStatus ? this.applicant.inventoryStatus.value : 'INSTOCK';
-                this.applicants.push(this.applicant);
-                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'applicant Created', life: 3000 });
-            }
+        console.log(this.applicant);
 
             this.applicants = [...this.applicants];
             // this.prodcutDialog = false;
             this.applicant = {};
-        }
+
     }
 
     findIndexById(id: number): number {

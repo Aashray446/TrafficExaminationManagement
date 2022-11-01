@@ -3,7 +3,7 @@ export class Applicant {
     applicantId: number;
     name: string;
     serialNumber: string;
-    tokken: number;
+    tokken: number | null;
     photo: String;
     applicantDetails : ApplicantDetails | null;
 

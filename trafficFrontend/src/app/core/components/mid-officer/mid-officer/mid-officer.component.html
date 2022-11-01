@@ -70,11 +70,11 @@
                             {{applicant.name}}
                         </td>
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">Image</span>
-                            <img [src]="'assets/demo/images/applicant/' + applicant.image" [alt]="applicant.name"
+                            <img [src]="'assets/demo/images/applicant/' + applicant.photo" [alt]="applicant.name"
                                 width="100" class="shadow-4" />
                         </td>
                         <td style="width:14%; min-width:8rem;">
-                            <span class="p-column-title">Serioal Number</span>
+                            <span class="p-column-title">Serial Number</span>
                             {{applicant.serialNumber}}
                         </td>
                         <td style="width:14%; min-width:8rem;">
@@ -107,29 +107,27 @@
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !applicant.name">Name is required.</small>
                 </div>
                 <div class="field">
-                    <label for="name">Aplicant Id</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="applicant.name" required autofocus
-                        [ngClass]="{'ng-invalid ng-dirty' : submitted && !applicant.name}" />
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !applicant.name">Name is required.</small>
+                    <label for="id">Aplicant Id</label>
+                    <input type="text" pInputText id="name" [(ngModel)]="applicant.id" required autofocus
+                        [ngClass]="{'ng-invalid ng-dirty' : submitted && !applicant.id}" />
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !applicant.id">Name is required.</small>
                 </div>
 
                 <div class="formgrid grid">
                     <div class="field col">
                         <label for="price">Serial Number</label>
-                        <p-inputNumber id="price" [(ngModel)]="applicant.price" mode="currency" currency="USD"
+                        <p-inputNumber id="price" [(ngModel)]="applicant.serialNumber" mode="currency" currency="USD"
                             locale="en-US"></p-inputNumber>
                     </div>
                     <div class="field col">
                         <label for="quantity">Token</label>
-                        <p-inputNumber id="quantity" [(ngModel)]="applicant.quantity"></p-inputNumber>
+                        <p-inputNumber id="quantity" [(ngModel)]="applicant.tokken"></p-inputNumber>
                     </div>
                 </div>
 
                 <div class="field">
-                    <!-- <input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput"
-                        (change)="onFileSelected($event)"> -->
-                    <p-fileUpload name="myfile[]" url="./upload.php" capture="camera" accept="image/*"
-                        [maxFileSize]="5000000" [showCancelButton]="false">
+                    <p-fileUpload name="myfile[]" [(ngModel)]="applicant.photo" url="./upload.php" capture="camera"
+                        accept="image/*" [maxFileSize]="5000000" [showCancelButton]="false">
                     </p-fileUpload>
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !applicant.name">Name is required.</small>
                 </div>
