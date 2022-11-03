@@ -13,10 +13,12 @@ const refreshTokenMiddleware = require('#policies/refreshToken.policy');
 // Mapper of routes to controllers.
 const mapRoutes = require('express-routes-mapper');
 
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 
 module.exports = _setUpRoutes;
 
-function _setUpRoutes(options={}) {
+function _setUpRoutes(options = {}) {
 	try {
 		const app = options?.app;
 
@@ -28,6 +30,8 @@ function _setUpRoutes(options={}) {
 			app.use(`/api/${versionString}/auth/refresh`, refreshTokenMiddleware);
 			app.use(`/api/${versionString}/auth/logout`, refreshTokenMiddleware);
 
+			// File Upload MiddleWare
+			app.all(`/api/${versionString}/private/applicant/create`, upload.single("file"));
 
 			// Set API routes for express application
 			app.use(`/api/${versionString}`, mapRoutes(apiRoutes(versionString).public, 'app/controllers/api/'));
@@ -38,9 +42,9 @@ function _setUpRoutes(options={}) {
 		app.use('/', mapRoutes(webRoutes.public, `app/controllers/web/`));
 
 		// Everything's ok, continue.
-		return (req, res, next)=>next();
+		return (req, res, next) => next();
 	}
-	catch(error) {
+	catch (error) {
 		const err = new Error(`Could not setup routes: ${error.message}`);
 		err.name = error?.name;
 		err.code = error?.code;

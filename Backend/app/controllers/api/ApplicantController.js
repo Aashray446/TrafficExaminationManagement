@@ -58,10 +58,12 @@ function ApplicantController() {
     const _create = async (req, res) => {
         try {
             // Extract request input:
-            const applicantDetails = req.body;
+            const applicantDetails = JSON.parse(req.body.applicant);
+            applicantDetails.photo = req.file.path;
 
-            // Create new one.
+            console.log(applicantDetails);
             const applicant = await Applicant.create(applicantDetails)
+
 
             // Everything's fine, send response.
             return createOKResponse({
@@ -99,10 +101,12 @@ function ApplicantController() {
         }
     }
 
+
     return {
         // Auth:
         create: _create,
         getAll: _getAll,
+
     }
 
 
