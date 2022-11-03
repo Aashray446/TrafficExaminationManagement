@@ -1,6 +1,8 @@
 // Facades:
 const Applicant = require('#facades/Applicant');
-
+const baseUrl = process.env.HOST
+const sharp = require('sharp');
+const path = require('path');
 // Reponse protocols.
 const {
     createOKResponse,
@@ -59,11 +61,17 @@ function ApplicantController() {
         try {
             // Extract request input:
             const applicantDetails = JSON.parse(req.body.applicant);
-            applicantDetails.photo = req.file.path;
+
+            const relativePath = path.join(__dirname, '../../../public/');
+            sharp(relativePath + req.file.filename).resize(200, 200).jpeg({ quality: 50 }).toFile(relativePath + req.file.filename + '.jpeg');
+
+
+            applicantDetails.photo = `${baseUrl}/${req.file.filename}.jpeg`;
+
+
 
             console.log(applicantDetails);
             const applicant = await Applicant.create(applicantDetails)
-
 
             // Everything's fine, send response.
             return createOKResponse({

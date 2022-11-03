@@ -14,7 +14,7 @@ const refreshTokenMiddleware = require('#policies/refreshToken.policy');
 const mapRoutes = require('express-routes-mapper');
 
 const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
+const upload = multer({ dest: "public/" });
 
 module.exports = _setUpRoutes;
 
