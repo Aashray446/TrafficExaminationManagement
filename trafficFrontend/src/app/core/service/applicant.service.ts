@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Applicant } from '../models/applicant.model';
-import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
@@ -18,9 +17,14 @@ export class ApplicantService {
         return this._http.get( environment.apiBaseUrl + '/private/applicant/getAll');
     }
 
-    public addApplicant(applicant:Applicant){
+    public addApplicant(applicant:Applicant, file:File) {
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('applicant', JSON.stringify(applicant));
+
         // this.currentApplicants.push(applicant);
-      return this._http.post( environment.apiBaseUrl + '/private/applicant/create', applicant)
+      return this._http.post( environment.apiBaseUrl + '/private/applicant/create', formData);
     }
 
 

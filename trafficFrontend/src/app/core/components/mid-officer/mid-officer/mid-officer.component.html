@@ -108,8 +108,8 @@
                 </div>
                 <div class="field">
                     <label for="id">Aplicant Id</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="applicant.id" required autofocus
-                        [ngClass]="{'ng-invalid ng-dirty' : submitted && !applicant.id}" />
+                    <input type="number" pInputText id="name" [(ngModel)]="applicant.applicantId" required autofocus
+                        [ngClass]="{'ng-invalid ng-dirty' : submitted && !applicant.applicantId}" />
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !applicant.id">Name is required.</small>
                 </div>
 
@@ -126,8 +126,9 @@
                 </div>
 
                 <div class="field">
-                    <p-fileUpload name="myfile[]" [(ngModel)]="applicant.photo" url="./upload.php" capture="camera"
-                        accept="image/*" [maxFileSize]="5000000" [showCancelButton]="false">
+                    <p-fileUpload #file name="file" [customUpload]="true" capture="camera" accept="image/*"
+                        [maxFileSize]="5000000" (onSelect)="onFileselected($event)" [showCancelButton]="false"
+                        [showUploadButton]="false">
                     </p-fileUpload>
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !applicant.name">Name is required.</small>
                 </div>

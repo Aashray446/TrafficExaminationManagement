@@ -14,6 +14,7 @@ import { ApplicantService } from 'src/app/core/service/applicant.service';
 })
 export class MidOfficerComponent implements OnInit {
 
+
     productDialog: boolean = false;
 
     deleteProductDialog: boolean = false;
@@ -30,9 +31,10 @@ export class MidOfficerComponent implements OnInit {
     submitted: boolean = false;
 
     cols: any[] = [];
-    selectedFile = null;
 
     rowsPerPageOptions = [5, 10, 20];
+
+    selectedFile:any;
 
     constructor(private messageService: MessageService, private applicantService:ApplicantService) { }
 
@@ -60,16 +62,6 @@ export class MidOfficerComponent implements OnInit {
         })
    }
 
-
-    onFileSelected(event:any)
-    {
-      this.selectedFile = event.target.files[0];
-    }
-
-    onUpload()
-    {
-      console.log(this.selectedFile); // You can use FormData upload to backend server
-    }
 
     openNew() {
         this.applicant = {};
@@ -111,14 +103,29 @@ export class MidOfficerComponent implements OnInit {
 
     }
 
+    onFileselected(event : any) {
+        this.selectedFile = event.currentFiles[0];
+    }
+
     saveapplicant() {
         this.submitted = true;
 
-        console.log(this.applicant);
+            // User Validations Left
+            // if(this.applicants.findIndex((obj) => obj.applicantId === this.applicant.applicantId) === 1) {
+            //     this.messageService.add({ severity: 'error', summary: "Application ID Already Exists", life:3000} )
+            //     return
+            // }
 
-            this.applicants = [...this.applicants];
-            // this.prodcutDialog = false;
-            this.applicant = {};
+
+        this.applicantService.addApplicant(this.applicant, this.selectedFile).subscribe({
+            next: (data:any) => {
+                this.applicant = {};
+            },
+            error: (err) => {
+                console.log(err);
+                this.messageService.add({ severity: 'error', summary: err.error.error.message, detail: 'Applicant not added', life: 3000 });
+            }
+        })
 
     }
 
@@ -134,14 +141,6 @@ export class MidOfficerComponent implements OnInit {
         return index;
     }
 
-    createId(): string {
-        let id = '';
-        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        for (let i = 0; i < 5; i++) {
-            id += chars.charAt(Math.floor(Math.random() * chars.length));
-        }
-        return id;
-    }
 
     onGlobalFilter(table: Table, event: Event) {
         table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
