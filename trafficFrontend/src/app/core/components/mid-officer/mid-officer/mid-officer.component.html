@@ -70,8 +70,7 @@
                             {{applicant.name}}
                         </td>
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">Image</span>
-                            <img [src]="'assets/demo/images/applicant/' + applicant.photo" [alt]="applicant.name"
-                                width="100" class="shadow-4" />
+                            <img [src]="applicant.photo" [alt]="applicant.photo" width="100" class="shadow-4" />
                         </td>
                         <td style="width:14%; min-width:8rem;">
                             <span class="p-column-title">Serial Number</span>
@@ -98,8 +97,8 @@
         <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="applicant Details" [modal]="true"
             class="p-fluid">
             <ng-template pTemplate="content">
-                <img [src]="'assets/demo/images/applicant/' + applicant.image" [alt]="applicant.image" width="150"
-                    class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="applicant.image">
+                <img [src]="applicant.photo" [alt]="applicant.photo" width="150"
+                    class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="applicant.photo">
                 <div class="field">
                     <label for="name">Name</label>
                     <input type="text" pInputText id="name" [(ngModel)]="applicant.name" required autofocus
@@ -110,7 +109,8 @@
                     <label for="id">Aplicant Id</label>
                     <input type="number" pInputText id="name" [(ngModel)]="applicant.applicantId" required autofocus
                         [ngClass]="{'ng-invalid ng-dirty' : submitted && !applicant.applicantId}" />
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !applicant.id">Name is required.</small>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !applicant.applicantId">Name is
+                        required.</small>
                 </div>
 
                 <div class="formgrid grid">
