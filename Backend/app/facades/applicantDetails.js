@@ -1,5 +1,5 @@
 // Reference models.
-const Applicant = require('#models/Applicant');
+const Applicant = require('#models/ApplicantDetails');
 
 
 const { Err } = require('#factories/errors');
@@ -20,20 +20,21 @@ module.exports = {
 }
 
 // Auth:
-async function _create(ApplicantDetails) {
+async function _create(ApplicantDetails, applicantId) {
     try {
         // Try to create new user.
-        const applicant = await Applicant.create({
-            applicantId: ApplicantDetails.applicantId,
-            name: ApplicantDetails.name,
-            serialNumber: ApplicantDetails.serialNumber,
-            tokken: ApplicantDetails.tokken,
-            photo: ApplicantDetails.photo,
+        const response = await Applicant.create({
+            eightPattern: ApplicantDetails.eightPattern ?? null,
+            trafficLightPattern: ApplicantDetails.trafficLightPattern ?? null,
+            rampPattern: ApplicantDetails.rampPattern ?? null,
+            LParkingPattern: ApplicantDetails.LParkingPattern ?? null,
+            behaviourPattern: ApplicantDetails.behaviourPattern ?? null,
+            ApplicantApplicantId: applicantId
         });
 
         // Prepare output.
         const result = [
-            applicant
+            response
         ];
         // Send output.
         return Promise.resolve(result);
@@ -86,6 +87,7 @@ async function _getAll() {
 async function _delete(ApplicantDetails) {
     try {
         // Try to find user.
+        console.log("ApplicantDetails", ApplicantDetails)
         const result = await Applicant.destroy({ where: { applicantId: ApplicantDetails.applicantId } });
 
         //  If user not found, throw error with name UserNotFound:

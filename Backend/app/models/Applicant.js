@@ -29,6 +29,7 @@ const Applicant = database.define(
     {
         // Enable automatic 'createdAt' and 'updatedAt' fields.
         timestamps: true,
+
         // Only allow 'soft delete'
         // (set of 'deletedAt' field, insted of the real deletion).
     }
@@ -37,7 +38,7 @@ const Applicant = database.define(
 
 // Static methods:
 Applicant.associate = (models) => {
-    models.ApplicantDetails.belongsTo(models.Applicant)
+    models.ApplicantDetails.belongsTo(models.Applicant, { onDelete: 'CASCADE' });
 }
 
 

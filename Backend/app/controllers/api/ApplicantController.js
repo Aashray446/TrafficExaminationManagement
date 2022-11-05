@@ -1,5 +1,6 @@
 // Facades:
 const Applicant = require('#facades/Applicant');
+const ApplicantDetails = require('#facades/ApplicantDetails');
 const baseUrl = process.env.HOST
 const sharp = require('sharp');
 const path = require('path');
@@ -69,10 +70,9 @@ function ApplicantController() {
             applicantDetails.photo = `${baseUrl}/${req.file.filename}.jpeg`;
 
 
-
-            console.log(applicantDetails);
             const applicant = await Applicant.create(applicantDetails)
-
+            console.log(applicant);
+            await ApplicantDetails.create({}, applicantDetails.applicantId);
             // Everything's fine, send response.
             return createOKResponse({
                 res,
@@ -113,7 +113,6 @@ function ApplicantController() {
     const _delete = async (req, res) => {
         try {
             const applicant = req.body;
-            console.log(applicant)
             const result = await Applicant.delete(applicant);
 
             // Everything's fine, send response.

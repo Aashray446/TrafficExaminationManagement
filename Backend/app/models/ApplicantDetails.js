@@ -33,7 +33,7 @@ const ApplicantDetails = database.define(
 
 
 ApplicantDetails.associate = (models) => {
-	models.Applicant.hasOne(models.ApplicantDetails)
+	models.Applicant.hasOne(models.ApplicantDetails, { onDelete: 'CASCADE' })
 }
 
 
