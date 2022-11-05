@@ -86,7 +86,8 @@ async function _getAll() {
 async function _delete(ApplicantDetails) {
     try {
         // Try to find user.
-        const result = await User.destroy({ where: { applicantId: ApplicantDetails.applicantId } });
+        console.log("ApplicantDetails", ApplicantDetails)
+        const result = await Applicant.destroy({ where: { applicantId: ApplicantDetails.applicantId } });
 
         //  If user not found, throw error with name UserNotFound:
         if (result == 0) {
@@ -101,4 +102,6 @@ async function _delete(ApplicantDetails) {
     catch (error) {
         return Promise.reject(error);
     }
+
+
 }

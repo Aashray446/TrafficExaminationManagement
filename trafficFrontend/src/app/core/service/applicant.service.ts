@@ -13,7 +13,7 @@ export class ApplicantService {
   constructor(private _http : HttpClient) { }
 
     public getApplicants() {
-        // return this.currentApplicants;
+
         return this._http.get( environment.apiBaseUrl + '/private/applicant/getAll');
     }
 
@@ -23,8 +23,12 @@ export class ApplicantService {
         formData.append('file', file);
         formData.append('applicant', JSON.stringify(applicant));
 
-        // this.currentApplicants.push(applicant);
+
       return this._http.post( environment.apiBaseUrl + '/private/applicant/create', formData);
+    }
+
+    public deleteApplicant(applicant:Applicant) {
+        return this._http.post( environment.apiBaseUrl + '/private/applicant/delete', applicant);
     }
 
 

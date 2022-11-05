@@ -7,6 +7,7 @@ module.exports = {
 
 	'POST /applicant/create': 'ApplicantController.create',
 	'GET /applicant/getAll': 'ApplicantController.getAll',
+	'POST /applicant/delete': 'ApplicantController.delete',
 
 
 };

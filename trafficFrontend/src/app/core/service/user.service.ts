@@ -37,8 +37,6 @@ export class UserService {
         return this._http.post<User[]>(environment.apiBaseUrl + '/auth/login', userData)
     }
 
-
-
     // public addUser(user:User): void {
     //     this.currentUsers.push(user);
     //     this.currentUsersChanged.next(this.currentUsers);

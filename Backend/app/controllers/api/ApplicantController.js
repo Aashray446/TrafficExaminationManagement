@@ -109,11 +109,36 @@ function ApplicantController() {
         }
     }
 
+    //delete applicant
+    const _delete = async (req, res) => {
+        try {
+            const applicant = req.body;
+            console.log(applicant)
+            const result = await Applicant.delete(applicant);
+
+            // Everything's fine, send response.
+            return createOKResponse({
+                res,
+                content: {
+                    applicant: result
+                }
+            });
+
+        }
+        catch (error) {
+            console.error("UsersController._create error: ", error);
+            return _processError(error, req, res);
+        }
+    }
+
+
+
 
     return {
         // Auth:
         create: _create,
         getAll: _getAll,
+        delete: _delete,
 
     }
 
