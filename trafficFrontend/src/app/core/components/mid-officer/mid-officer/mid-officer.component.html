@@ -20,7 +20,8 @@
                 <ng-template pTemplate="right">
                     <button pButton pRipple icon="pi pi-upload" class="p-button-help mr-2"
                         (click)="dt.exportCSV()"></button>
-                    <button pButton pRipple icon="pi pi-power-off" class="p-button-danger"></button>
+                    <button pButton pRipple icon="pi pi-power-off" routerLink="['']" (click)="logout()"
+                        class="p-button-danger"></button>
                 </ng-template>
             </p-toolbar>
 
@@ -82,9 +83,6 @@
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil"
-                                    class="p-button-rounded p-button-success mr-2"
-                                    (click)="editapplicant(applicant)"></button>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
                                     (click)="deleteapplicant(applicant)"></button>
                             </div>
@@ -116,8 +114,7 @@
                 <div class="formgrid grid">
                     <div class="field col">
                         <label for="price">Serial Number</label>
-                        <p-inputNumber id="price" [(ngModel)]="applicant.serialNumber" mode="currency" currency="USD"
-                            locale="en-US"></p-inputNumber>
+                        <p-inputNumber id="price" [(ngModel)]="applicant.serialNumber"></p-inputNumber>
                     </div>
                     <div class="field col">
                         <label for="quantity">Token</label>

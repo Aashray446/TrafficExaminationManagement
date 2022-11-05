@@ -80,7 +80,7 @@ export class MidOfficerComponent implements OnInit {
 
     deleteapplicant(applicant: Applicant) {
         this.deleteProductDialog = true;
-        this.applicant = { ...applicant };
+        this.applicant = applicant;
     }
 
     confirmDeleteSelected() {
@@ -92,9 +92,16 @@ export class MidOfficerComponent implements OnInit {
 
     confirmDelete() {
         this.deleteProductDialog = false;
-        this.applicants = this.applicants.filter(val => val.applicantId !== this.applicant.applicantId);
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'applicant Deleted', life: 3000 });
-        this.applicant = {};
+        this.applicantService.deleteApplicant(this.applicant).subscribe({
+            next: (data:any) => {
+                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'applicant Deleted', life: 3000 });
+                this.getApplicants();
+            },
+            error: (err) => {
+                this.messageService.add({ severity: 'error', summary: err.error.error.message, detail: 'Applicant not deleted', life: 3000 });
+            }
+        })
+
     }
 
     hideDialog() {
@@ -119,7 +126,10 @@ export class MidOfficerComponent implements OnInit {
 
         this.applicantService.addApplicant(this.applicant, this.selectedFile).subscribe({
             next: (data:any) => {
+                this.productDialog = false;
                 this.applicant = {};
+                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'applicant Created', life: 3000 });
+                this.getApplicants();
             },
             error: (err) => {
                 console.log(err);
@@ -146,4 +156,11 @@ export class MidOfficerComponent implements OnInit {
         table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
     }
 
+
+
+    // logout
+    logout() {
+        localStorage.removeItem('token')
+        localStorage.removeItem('user')
+    }
 }
