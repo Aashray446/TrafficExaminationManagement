@@ -4,10 +4,11 @@
         <div class="grid p-fluid">
             <div class="col-12">
                 <div class="card">
-                    <h5>Enter Applicant Details</h5>
-                    <p-autoComplete [(ngModel)]="selectedList" [suggestions]="filterCities"
-                        (completeMethod)="filterCity($event)" field="name" [dropdown]="true">
-                    </p-autoComplete>
+                    <h5>Enter Tokken Number</h5>
+                    <span class="p-input-icon-right">
+                        <i class="pi pi-search"></i>
+                        <input type="text" [(ngModel)]="tokken" (keyup.enter)="searchByToken()" pInputText />
+                    </span>
                 </div>
             </div>
         </div>
