@@ -13,7 +13,7 @@ module.exports = {
     getAll: _getAll,
     // Private:
 
-
+    search: _search,
     // Add your methods here...
 
     // Private\
@@ -102,5 +102,23 @@ async function _delete(ApplicantDetails) {
         return Promise.reject(error);
     }
 
+
+}
+
+async function _search(data, type) {
+    try {
+        // Try to find user.
+        const applicant = await Applicant.findAll({
+            where: {
+                [type]: data
+            }
+        });
+
+        // Send output.
+        return Promise.resolve(applicant);
+    }
+    catch (error) {
+        return Promise.reject(error);
+    }
 
 }

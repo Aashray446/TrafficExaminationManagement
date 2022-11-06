@@ -10,5 +10,6 @@ module.exports = {
 	'POST /applicant/delete': 'ApplicantController.delete',
 
 	'POST /applicantDetails/create ': 'ApplicantDetailsController.create',
+	'GET /applicantDetails/search-by-token': 'ApplicantDetailsController.searchByToken',
 
 };

@@ -1,6 +1,6 @@
 // Facades:
-const Applicant = require('#facades/ApplicantDetails');
-const baseUrl = process.env.HOST
+const ApplicantDetails = require('#facades/ApplicantDetails');
+const Applicant = require('#facades/Applicant');
 // Reponse protocols.
 const {
     createOKResponse,
@@ -61,7 +61,7 @@ function ApplicantController() {
             const applicantDetails = req.body.applicantDetails;
             const applicantId = req.body.applicant.applicantId;
 
-            const applicant = await Applicant.create(applicantDetails, applicantId);
+            const applicant = await ApplicantDetails.create(applicantDetails, applicantId);
 
             // Everything's fine, send response.
             return createOKResponse({
@@ -83,7 +83,7 @@ function ApplicantController() {
     const _getAll = async (req, res) => {
         try {
 
-            const applicants = await Applicant.getAll();
+            const applicants = await ApplicantDetails.getAll();
 
             // Everything's fine, send response.
             return createOKResponse({
@@ -98,6 +98,28 @@ function ApplicantController() {
             return _processError(error, req, res);
         }
     }
+
+    const _searchByToken = async (req, res) => {
+        try {
+
+            const tokken = req.body.tokken;
+
+            const result = await Applicant.search(tokken, 'tokken');
+
+            // Everything's fine, send response.
+            return createOKResponse({
+                res,
+                content: {
+                    applicant: result
+                }
+            });
+        }
+        catch (error) {
+            console.error("UsersController._create error: ", error);
+            return _processError(error, req, res);
+        }
+    }
+
 
     //delete applicant
     const _delete = async (req, res) => {
@@ -129,6 +151,7 @@ function ApplicantController() {
         create: _create,
         getAll: _getAll,
         delete: _delete,
+        searchByToken: _searchByToken
 
     }
 

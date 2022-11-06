@@ -11,7 +11,7 @@ module.exports = {
     update: _update,
     delete: _delete,
     getAll: _getAll,
-    // Private:
+
 
 
     // Add your methods here...
@@ -106,3 +106,4 @@ async function _delete(ApplicantDetails) {
 
 
 }
+
