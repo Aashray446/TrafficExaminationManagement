@@ -102,7 +102,7 @@ function ApplicantController() {
     const _searchByToken = async (req, res) => {
         try {
 
-            const tokken = req.body.tokken;
+            const tokken = req.params['tokken'];
 
             const result = await Applicant.search(tokken, 'tokken');
 
