@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Applicant } from '../models/applicant.model';
-
+import { MessageService } from 'primeng/api';
 @Injectable({
   providedIn: 'root'
 })
 export class ApplicantDetailsService {
 
-  constructor(private _http : HttpClient) { }
+  constructor(private _http : HttpClient, private _message : MessageService) { }
 
   public currentApplicant : Subject<Applicant> = new Subject<Applicant>();
 
@@ -19,10 +19,14 @@ export class ApplicantDetailsService {
         next: (data:any) => {
             if(data.content.applicant[0]) {
                 this.currentApplicant.next(data.content.applicant[0]);
+                return
             }
+
+            this._message.add({severity:'error', summary:'Error', detail:'No Tokken found'});
+
         },
         error: (err) => {
-
+            this._message.add({severity:'error', summary:'Error', detail:err.error.error.message} );
         }
     }
   );

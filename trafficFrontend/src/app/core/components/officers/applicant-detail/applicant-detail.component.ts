@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Applicant } from 'src/app/core/models/applicant.model';
+import { ApplicantDetailsService } from 'src/app/core/service/applicant-details.service';
 
 @Component({
   selector: 'app-applicant-detail',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApplicantDetailComponent implements OnInit {
 
-  constructor() { }
+    applicant : Applicant | null = null;
+
+    dataAvailable = false;
+
+
+  constructor(private _applicantDetails : ApplicantDetailsService) { }
 
   ngOnInit(): void {
+
+   this._applicantDetails.currentApplicant.subscribe(
+        (data) => {
+            this.applicant = data;
+            this.dataAvailable = true;
+        })
   }
 
 }
