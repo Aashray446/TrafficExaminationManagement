@@ -120,6 +120,57 @@ function ApplicantController() {
         }
     }
 
+    const _update = async (req, res) => {
+        try {
+            let applicant;
+            const id = req.body.applicantId;
+            switch (req.token.role) {
+                case 'EightOfficer':
+                    applicant = await ApplicantDetails.updateEightPattern(id, req.body.applicantDetails);
+                    break;
+                case 'TrafficLightOfficer':
+                    applicant = await ApplicantDetails.updateTrafficLightPattern(id, req.body.applicantDetails);
+                    break;
+                case 'RampOfficer':
+                    applicant = await ApplicantDetails.updateRampPattern(id, req.body.applicantDetails);
+                    break;
+                case 'LParkingOfficer':
+                    applicant = await ApplicantDetails.updateLParkingPattern(id, req.body.applicantDetails);
+                    break;
+                case 'BehaviourOfficer':
+                    applicant = await ApplicantDetails.updateBehaviourPattern(id, req.body.applicantDetails);
+                    break;
+                default:
+                    return createErrorResponse({
+                        res,
+                        error: {
+                            message: "Unauthorized"
+                        },
+                        status: 401
+                    });
+            }
+
+            // const applicantDetails = req.body.applicantDetails;
+            // const applicantId = req.body.applicant.applicantId;
+
+            // const applicant = await ApplicantDetails.update(applicantDetails, applicantId);
+
+            // Everything's fine, send response.
+            return createOKResponse({
+                res,
+                content: {
+                    applicant: applicant
+                }
+            });
+
+        }
+        catch (error) {
+            console.error("UsersController._create error: ", error);
+            return _processError(error, req, res);
+        }
+
+    }
+
 
     //delete applicant
     const _delete = async (req, res) => {
@@ -151,8 +202,8 @@ function ApplicantController() {
         create: _create,
         getAll: _getAll,
         delete: _delete,
-        searchByToken: _searchByToken
-
+        searchByToken: _searchByToken,
+        update: _update
     }
 
 
