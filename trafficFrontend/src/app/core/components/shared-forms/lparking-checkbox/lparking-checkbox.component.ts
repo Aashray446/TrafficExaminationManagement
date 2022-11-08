@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { lParkingPattern } from 'src/app/core/models/applicantDetails.interface';
+import { ApplicantDetailsService } from 'src/app/core/service/applicant-details.service';
 
 @Component({
   selector: 'app-lparking-checkbox',
@@ -16,9 +17,15 @@ export class LparkingCheckboxComponent implements OnInit {
         officerId: 0
     }
 
-  constructor() { }
+  constructor(private _applicantDetailsService: ApplicantDetailsService) { }
 
   ngOnInit(): void {
+
   }
+
+  update() {
+    this._applicantDetailsService.AnyPattern = this.lParkingPattern;
+}
+
 
 }

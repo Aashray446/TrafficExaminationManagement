@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { rampPattern } from 'src/app/core/models/applicantDetails.interface';
+import { ApplicantDetailsService } from 'src/app/core/service/applicant-details.service';
 
 @Component({
   selector: 'app-ramp-checkbox',
@@ -23,9 +24,13 @@ export class RampCheckboxComponent implements OnInit {
 
 
 
-  constructor() { }
+  constructor(private _applicantDetailsService: ApplicantDetailsService) { }
 
   ngOnInit(): void {
   }
+
+  update() {
+    this._applicantDetailsService.AnyPattern = this.rampPattern;
+}
 
 }

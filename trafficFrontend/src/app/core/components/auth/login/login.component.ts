@@ -41,6 +41,8 @@ export class LoginComponent {
                     localStorage.setItem('expiresIn' , response.content.tokens.accessToken.expiresIn);
                     localStorage.setItem('user', JSON.stringify(response.content.user));
 
+                    this.UserService.loggedUser.next(response.content.user);
+
                     return response.content.user.role == Role.Admin ? this._router.navigate(['/admin'])
                            : response.content.user.role == Role.EightOfficer ? this._router.navigate(['/officers/eightOfficer'])
                            : response.content.user.role == Role.BehaviourOfficer ? this._router.navigate(['/offciers/behaviourOfficer'])

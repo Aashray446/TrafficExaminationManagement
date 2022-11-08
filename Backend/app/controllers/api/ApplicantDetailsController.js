@@ -126,19 +126,19 @@ function ApplicantController() {
             const id = req.body.applicantId;
             switch (req.token.role) {
                 case 'EightOfficer':
-                    applicant = await ApplicantDetails.updateEightPattern(id, req.body.applicantDetails);
+                    applicant = await ApplicantDetails.updateEightPattern(id, req.body);
                     break;
                 case 'TrafficLightOfficer':
-                    applicant = await ApplicantDetails.updateTrafficLightPattern(id, req.body.applicantDetails);
+                    applicant = await ApplicantDetails.updateTrafficLightPattern(id, req.body);
                     break;
                 case 'RampOfficer':
-                    applicant = await ApplicantDetails.updateRampPattern(id, req.body.applicantDetails);
+                    applicant = await ApplicantDetails.updateRampPattern(id, req.body);
                     break;
                 case 'LParkingOfficer':
-                    applicant = await ApplicantDetails.updateLParkingPattern(id, req.body.applicantDetails);
+                    applicant = await ApplicantDetails.updateLParkingPattern(id, req.body);
                     break;
                 case 'BehaviourOfficer':
-                    applicant = await ApplicantDetails.updateBehaviourPattern(id, req.body.applicantDetails);
+                    applicant = await ApplicantDetails.updateBehaviourPattern(id, req.body);
                     break;
                 default:
                     return createErrorResponse({

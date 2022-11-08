@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { MessageService } from 'primeng/api';
@@ -11,7 +11,7 @@ import { MessageService } from 'primeng/api';
 export class UserService {
 
  currentUsers = new Subject<User[]>();
-
+ loggedUser = new Subject<User[]>();
 
   constructor(private _http : HttpClient, private messageService: MessageService) {}
 

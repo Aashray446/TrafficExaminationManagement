@@ -4,14 +4,26 @@ import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Applicant } from '../models/applicant.model';
 import { MessageService } from 'primeng/api';
+import { Role } from '../models/role.enum';
 @Injectable({
   providedIn: 'root'
 })
 export class ApplicantDetailsService {
 
-  constructor(private _http : HttpClient, private _message : MessageService) { }
+public AnyPattern : any;
+private CurrentApplicantId : String = '';
 
-  public currentApplicant : Subject<Applicant> = new Subject<Applicant>();
+  constructor(private _http : HttpClient, private _message : MessageService) {
+    this.currentApplicant.subscribe((data:any)=> {
+        if(data) {
+            this.CurrentApplicantId = data.applicantId
+            return
+        }
+        this.CurrentApplicantId = '';
+    })
+   }
+
+  public currentApplicant : Subject<any> = new Subject<any>();
 
   public searchByToken(tokken:string) {
   this._http.get( environment.apiBaseUrl + '/private/applicantDetails/search-by-token/' + tokken).subscribe(
@@ -31,6 +43,28 @@ export class ApplicantDetailsService {
     }
   );
 }
+    // this.eightPattern.officerId = JSON.parse(localStorage.getItem('user')!).id;
+    // console.log(this.eightPattern);
+   // return this._http.post(environment.apiBaseUrl + '/private/applicantDetails/update', data);
 
+    public updateApplicantDetails(type : Role ) {
+
+        // .officerId = JSON.parse(localStorage.getItem('user')!).id;c
+        const user = JSON.parse(localStorage.getItem('user')!);
+        this.AnyPattern.officerId = user.id;
+        this.AnyPattern.applicantId = this.CurrentApplicantId
+        this._http.post(environment.apiBaseUrl + '/private/applicantDetails/update', this.AnyPattern).subscribe(
+            {
+                next: (data:any) => {
+                    this._message.add({severity:'success', summary:'Success', detail:'Details Updated'});
+                    this.currentApplicant.next(null);
+                },
+                error : (error: any) => {
+                    this._message.add({severity:'error', summary:'Error', detail:error.error.error.message});
+                    this.currentApplicant.next(null);
+                }
+            });
+
+    }
 
 }

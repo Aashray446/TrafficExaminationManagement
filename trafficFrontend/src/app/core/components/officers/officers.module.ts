@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OfficersRoutingModule } from './officers-routing.module';
 
+import {ToolbarModule } from 'primeng/toolbar';
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { TokenSearchComponent } from './token-search/token-search.component';
 import { ButtonModule } from 'primeng/button';
@@ -14,7 +15,8 @@ import { SharedFormsModule } from '../shared-forms/shared-forms.module';
         OfficersRoutingModule,
         AutoCompleteModule,
         ButtonModule,
-        SharedFormsModule
+        ToolbarModule,
+        SharedFormsModule,
       ],
   declarations: [
     TokenSearchComponent,

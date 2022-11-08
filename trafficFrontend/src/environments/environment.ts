@@ -4,7 +4,7 @@
 
 export const environment = {
   token : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY3MTM2MDc0LCJleHAiOjE2Njc3MzYwNzR9.bQx1cPEIi83GkOkaNjpNmsrzP2-B2SsZl9Aa_rx6o-Y",
-  production: false,
+  production: true,
   apiBaseUrl : 'http://localhost:3001/api/v1',
 };
 

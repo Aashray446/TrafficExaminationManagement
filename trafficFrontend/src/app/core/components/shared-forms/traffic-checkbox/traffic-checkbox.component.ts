@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trafficLightPattern } from 'src/app/core/models/applicantDetails.interface';
+import { ApplicantDetailsService } from 'src/app/core/service/applicant-details.service';
 
 @Component({
   selector: 'app-traffic-checkbox',
@@ -15,9 +16,13 @@ export class TrafficCheckboxComponent implements OnInit {
         officerId: 0
     }
 
-  constructor() { }
+  constructor(private _applicantDetailsService: ApplicantDetailsService) { }
 
   ngOnInit(): void {
   }
+
+  update() {
+    this._applicantDetailsService.AnyPattern = this.trafficLightPattern;
+}
 
 }

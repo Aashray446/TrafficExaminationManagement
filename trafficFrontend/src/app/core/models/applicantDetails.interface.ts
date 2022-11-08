@@ -43,3 +43,7 @@ export interface ApplicantDetails {
     lParkingPattern: lParkingPattern,
     behaviourPattern: behaviourPattern;
 }
+export function eightPattern(eightPattern: any) {
+    throw new Error('Function not implemented.');
+}
+

@@ -3,14 +3,15 @@
     <div class="grid formgrid">
         <div class="col-12 md:col-4">
             <div class="field-checkbox">
-                <p-checkbox name="group1" [binary]="true" [(ngModel)]="userEightPattern.lineTouch" id="ny">
+                <p-checkbox name="group1" [binary]="true" [(ngModel)]="userEightPattern.lineTouch" (onChange)="update()"
+                    id="ny">
                 </p-checkbox>
                 <label for="ny"> Line Touch (-5 ) </label>
             </div>
         </div>
         <div class="col-12 md:col-4">
             <div class="field-checkbox">
-                <p-checkbox name="group1" [binary]="true" [(ngModel)]="userEightPattern.poleTouch" (onChange)="print()"
+                <p-checkbox name="group1" [binary]="true" [(ngModel)]="userEightPattern.poleTouch" (onChange)="update()"
                     id="sf">
                 </p-checkbox>
                 <label for="sf"> Pole Touch (-5) </label>
@@ -18,7 +19,8 @@
         </div>
         <div class="col-12 md:col-4">
             <div class="field-checkbox">
-                <p-checkbox name="group1" [binary]="true" [(ngModel)]="userEightPattern.fail" id="la"></p-checkbox>
+                <p-checkbox name="group1" [binary]="true" [(ngModel)]="userEightPattern.fail" id="la"
+                    (onChange)="update()"></p-checkbox>
                 <label for="la"> Fail </label>
             </div>
         </div>
