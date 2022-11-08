@@ -62,7 +62,7 @@ function UsersController() {
 	// Auth:
 	const _register = async (req, res) => {
 
-		if (req?.token?.role !== 'admin') {
+		if (req?.token?.role !== 'Admin') {
 			return createErrorResponse({
 				res,
 				error: {
