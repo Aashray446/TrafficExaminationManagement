@@ -2,9 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Applicant } from '../models/applicant.model';
 import { MessageService } from 'primeng/api';
-import { Role } from '../models/role.enum';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -47,15 +46,17 @@ private CurrentApplicantId : String = '';
     // console.log(this.eightPattern);
    // return this._http.post(environment.apiBaseUrl + '/private/applicantDetails/update', data);
 
-    public updateApplicantDetails(type : Role ) {
+    public updateApplicantDetails( ) {
 
         // .officerId = JSON.parse(localStorage.getItem('user')!).id;c
         const user = JSON.parse(localStorage.getItem('user')!);
+        console.log(this.AnyPattern)
+        console.log(user)
         this.AnyPattern.officerId = user.id;
         this.AnyPattern.applicantId = this.CurrentApplicantId
         this._http.post(environment.apiBaseUrl + '/private/applicantDetails/update', this.AnyPattern).subscribe(
             {
-                next: (data:any) => {
+                next: () => {
                     this._message.add({severity:'success', summary:'Success', detail:'Details Updated'});
                     this.currentApplicant.next(null);
                 },

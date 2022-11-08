@@ -3,25 +3,29 @@
     <div class="grid formgrid">
         <div class="col-12 md:col-4">
             <div class="field-checkbox">
-                <p-checkbox name="group1" [binary]="true" [(ngModel)]="userBehaviour.first" id="ny"></p-checkbox>
+                <p-checkbox name="group1" [binary]="true" [(ngModel)]="userBehaviour.first" (onChange)="update()"
+                    id="ny"></p-checkbox>
                 <label for="ny"> -3 </label>
             </div>
         </div>
         <div class="col-12 md:col-4">
             <div class="field-checkbox">
-                <p-checkbox name="group1" [binary]="true" [(ngModel)]="userBehaviour.second" id="sf"></p-checkbox>
+                <p-checkbox name="group1" [binary]="true" [(ngModel)]="userBehaviour.second" (onChange)="update()"
+                    id="sf"></p-checkbox>
                 <label for="sf"> -4 </label>
             </div>
         </div>
         <div class="col-12 md:col-4">
             <div class="field-checkbox">
-                <p-checkbox name="group1" [binary]="true" [(ngModel)]="userBehaviour.third" id="la"></p-checkbox>
+                <p-checkbox name="group1" [binary]="true" [(ngModel)]="userBehaviour.third" (onChange)="update()"
+                    id="la"></p-checkbox>
                 <label for="la"> - 3</label>
             </div>
         </div>
         <div class="col-12 md:col-4">
             <div class="field-checkbox">
-                <p-checkbox name="group1" [binary]="true" [(ngModel)]="userBehaviour.fail" id="la"></p-checkbox>
+                <p-checkbox name="group1" [binary]="true" [(ngModel)]="userBehaviour.fail" (onChange)="update()"
+                    id="la"></p-checkbox>
                 <label for="la">Fail</label>
             </div>
         </div>

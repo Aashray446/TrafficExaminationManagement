@@ -24,7 +24,7 @@ export class TokenSearchComponent implements OnInit {
     }
 
     send() {
-        this.applicantDetail.updateApplicantDetails(Role.EightOfficer);
+        this.applicantDetail.updateApplicantDetails();
     }
 
 }

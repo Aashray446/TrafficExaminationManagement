@@ -15,7 +15,7 @@ export class BehaviourCheckboxComponent implements OnInit {
     third: false,
     fail: false,
     failRemarks: '',
-    officerId: 0
+    officerId: 0,
    };
 
   constructor(private _applicantDetailsService: ApplicantDetailsService) { }

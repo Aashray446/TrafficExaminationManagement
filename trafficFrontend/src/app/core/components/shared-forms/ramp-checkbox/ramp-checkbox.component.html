@@ -3,21 +3,23 @@
     <div class="grid formgrid">
         <div class="col-12 md:col-4">
             <div class="field-checkbox">
-                <p-checkbox name="group1" [binary]="true" [(ngModel)]="rampPattern.breakerOne" id="ny">
+                <p-checkbox name="group1" [binary]="true" (onChange)="update()" [(ngModel)]="rampPattern.breakerOne"
+                    id="ny">
                 </p-checkbox>
                 <label for="ny"> First Breaker ( -5 ) </label>
             </div>
         </div>
         <div class="col-12 md:col-4">
             <div class="field-checkbox">
-                <p-checkbox name="group1" [binary]="true" [(ngModel)]="rampPattern.breakerTwo" id="sf">
+                <p-checkbox name="group1" [binary]="true" (onChange)="update()" [(ngModel)]="rampPattern.breakerTwo"
+                    id="sf">
                 </p-checkbox>
                 <label for="sf"> Second Breaker ( -5 ) </label>
             </div>
         </div>
         <div class="col-12 md:col-4">
             <div class="field-checkbox">
-                <p-checkbox id="fail" [binary]="true" [(ngModel)]="rampPattern.fail"></p-checkbox>
+                <p-checkbox id="fail" [binary]="true" (onChange)="update()" [(ngModel)]="rampPattern.fail"></p-checkbox>
                 <label for="fail"> Fail</label>
             </div>
             <div class="field-mulitselect">

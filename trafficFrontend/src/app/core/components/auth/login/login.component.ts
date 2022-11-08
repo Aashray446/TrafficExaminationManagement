@@ -45,7 +45,7 @@ export class LoginComponent {
 
                     return response.content.user.role == Role.Admin ? this._router.navigate(['/admin'])
                            : response.content.user.role == Role.EightOfficer ? this._router.navigate(['/officers/eightOfficer'])
-                           : response.content.user.role == Role.BehaviourOfficer ? this._router.navigate(['/offciers/behaviourOfficer'])
+                           : response.content.user.role == Role.BehaviourOfficer ? this._router.navigate(['/officers/behaviourOfficer'])
                            : response.content.user.role == Role.LParkingOfficer ? this._router.navigate(['/officers/lParkingOfficer'])
                             : response.content.user.role == Role.RampOfficer ? this._router.navigate(['/officers/rampOfficer'])
                             : response.content.user.role == Role.TrafficLightOfficer ? this._router.navigate(['/officers/trafficLightOfficer'])
