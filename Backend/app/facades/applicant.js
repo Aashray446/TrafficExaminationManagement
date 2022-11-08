@@ -1,6 +1,6 @@
 // Reference models.
 const Applicant = require('#models/Applicant');
-
+const ApplicantDetails = require('#models/ApplicantDetails')
 
 const { Err } = require('#factories/errors');
 
@@ -14,6 +14,7 @@ module.exports = {
     // Private:
 
     search: _search,
+    getById: _getById,
     // Add your methods here...
 
     // Private\
@@ -48,7 +49,7 @@ async function _update(ApplicantDetails) {
         // Try to find user.
 
         const result = await Applicant.update(
-            { name: ApplicantDetails.name, serialNumber: ApplicantDetails.serialNumber, tokken: ApplicantDetails.tokken, photo: ApplicantDetails.photo },
+            { name: ApplicantDetails.name, serialNumber: ApplicantDetails.serialNumber, tokken: ApplicantDetails.tokken, photo: ApplicantDetails.photo, applicantDetails: ApplicantDetails.applicantDetails },
             { where: { applicantId: ApplicantDetails.applicantId } }
         );
 
@@ -121,4 +122,42 @@ async function _search(data, type) {
         return Promise.reject(error);
     }
 
+}
+
+//getby id  
+async function _getById(id) {
+    try {
+        // Try to find user.
+        const applicant = await Applicant.findOne({
+            where: {
+                applicantId: id
+            }
+        });
+
+        if (applicant == null) {
+            const err = new Err('Applicant not found');
+            err.name = "ApplicantNotFound";
+            throw err;
+        }
+
+
+        const applicantDetails = await ApplicantDetails.findOne({
+            where: {
+                ApplicantApplicantId: applicant.dataValues.applicantId
+            }
+        });
+
+
+
+
+        // Send output.
+        return Promise.resolve(
+            [
+                applicant, applicantDetails
+            ]
+        );
+    }
+    catch (error) {
+        return Promise.reject(error);
+    }
 }

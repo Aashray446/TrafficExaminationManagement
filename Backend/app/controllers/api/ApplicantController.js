@@ -109,6 +109,25 @@ function ApplicantController() {
         }
     }
 
+    const _getById = async (req, res) => {
+        try {
+            const applicant = await Applicant.getById(req.params.id);
+            // Everything's fine, send response.
+            return createOKResponse({
+                res,
+                content: {
+                    applicant: applicant[0],
+                    applicantDetails: applicant[1]
+                }
+            });
+        }
+        catch (error) {
+            console.error("UsersController._create error: ", error);
+            return _processError(error, req, res);
+        }
+    }
+
+
     //delete applicant
     const _delete = async (req, res) => {
         try {
@@ -130,6 +149,28 @@ function ApplicantController() {
         }
     }
 
+    //update applicant
+    const _update = async (req, res) => {
+        try {
+            const applicant = req.body;
+            const result = await Applicant.update(applicant);
+
+            // Everything's fine, send response.
+            return createOKResponse({
+                res,
+                content: {
+                    applicant: result
+                }
+            });
+
+        }
+        catch (error) {
+            console.error("UsersController._create error: ", error);
+            return _processError(error, req, res);
+        }
+    }
+
+
 
 
 
@@ -138,6 +179,8 @@ function ApplicantController() {
         create: _create,
         getAll: _getAll,
         delete: _delete,
+        getById: _getById,
+        update: _update
 
     }
 

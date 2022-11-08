@@ -8,8 +8,11 @@ module.exports = {
 	'POST /applicant/create': 'ApplicantController.create',
 	'GET /applicant/getAll': 'ApplicantController.getAll',
 	'POST /applicant/delete': 'ApplicantController.delete',
+	'GET /applicant/getById/:id': 'ApplicantController.getById',
+	'POST /applicant/update': 'ApplicantController.update',
 
 	'POST /applicantDetails/create ': 'ApplicantDetailsController.create',
 	'GET /applicantDetails/search-by-token/:tokken': 'ApplicantDetailsController.searchByToken',
 	'POST /applicantDetails/update': 'ApplicantDetailsController.update',
+
 };
