@@ -2,9 +2,7 @@
     <div class="col-12">
         <div class="card">
             <h5>Enter Applicant Details</h5>
-            <p-autoComplete [(ngModel)]="selectedList" [suggestions]="filterCities"
-                (completeMethod)="filterCity($event)" field="name" [dropdown]="true">
-            </p-autoComplete>
+            <input type="text" [(ngModel)]="searchTokken" (keyup.enter)="search()" pInputText />
         </div>
     </div>
 </div>

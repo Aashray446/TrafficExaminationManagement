@@ -4,7 +4,7 @@
 
         <p-toolbar styleClass="mb-4">
             <div>
-                <p>Welcome User</p>
+                <p>Welcome </p>
             </div>
 
             <ng-template pTemplate="right">
@@ -32,7 +32,7 @@
                 <div class="col-12 md:col-4">
                     <app-applicant-detail></app-applicant-detail>
                 </div>
-                <div class="col-12 md:col-8">
+                <div *ngIf="this.applicant" class="col-12 md:col-8">
                     <router-outlet></router-outlet>
                 </div>
 

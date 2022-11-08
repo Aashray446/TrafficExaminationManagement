@@ -50,8 +50,6 @@ private CurrentApplicantId : String = '';
 
         // .officerId = JSON.parse(localStorage.getItem('user')!).id;c
         const user = JSON.parse(localStorage.getItem('user')!);
-        console.log(this.AnyPattern)
-        console.log(user)
         this.AnyPattern.officerId = user.id;
         this.AnyPattern.applicantId = this.CurrentApplicantId
         this._http.post(environment.apiBaseUrl + '/private/applicantDetails/update', this.AnyPattern).subscribe(

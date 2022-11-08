@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SelectItem } from 'primeng/api';
+import { ApplicantService } from 'src/app/core/service/applicant.service';
 
 @Component({
     selector: 'app-search-bar',
@@ -7,37 +7,17 @@ import { SelectItem } from 'primeng/api';
     styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBarComponent implements OnInit {
-    cities: any[] = [];
-    filterCities: any[] = [];
-    selectedList: SelectItem = { value: '' };
 
-    constructor() {}
+    public searchTokken = '';
+
+    constructor(private _applicantServer : ApplicantService) {}
 
     ngOnInit(): void {
-
-        this.cities = [
-            {
-                label: 'New York',
-                value: { id: 1, name: 'New York', code: 'NY' },
-            },
-            { label: 'Rome', value: { id: 2, name: 'Rome', code: 'RM' } },
-            { label: 'London', value: { id: 3, name: 'London', code: 'LDN' } },
-            {
-                label: 'Istanbul',
-                value: { id: 4, name: 'Istanbul', code: 'IST' },
-            },
-            { label: 'Paris', value: { id: 5, name: 'Paris', code: 'PRS' } },
-        ];
     }
 
-    filterCity(event:any) {
-        this.filterCities = [];
-        for (let i = 0; i < this.cities.length; i++) {
-            let city = this.cities[i];
-            if (city.label.toLowerCase().indexOf(event.query.toLowerCase()) == 0) {
-                this.filterCities.push(city);
-            }
-        }
+    search(){
+        this._applicantServer.getById(this.searchTokken)
     }
+
 
 }

@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { behaviourPattern } from 'src/app/core/models/applicantDetails.interface';
 import { ApplicantDetailsService } from 'src/app/core/service/applicant-details.service';
+import { ApplicantService } from 'src/app/core/service/applicant.service';
 
 @Component({
   selector: 'app-behaviour-checkbox',
   templateUrl: './behaviour-checkbox.component.html',
   styleUrls: ['./behaviour-checkbox.component.scss']
 })
-export class BehaviourCheckboxComponent implements OnInit {
+export class BehaviourCheckboxComponent implements OnInit, OnDestroy {
 
    userBehaviour : behaviourPattern=  {
     first: false,
@@ -18,14 +19,23 @@ export class BehaviourCheckboxComponent implements OnInit {
     officerId: 0,
    };
 
-  constructor(private _applicantDetailsService: ApplicantDetailsService) { }
+  constructor(private _applicantDetailsService: ApplicantDetailsService, private _applicant: ApplicantService) { }
 
   ngOnInit(): void {
+    this._applicant.currentApplicant.subscribe((data)=>{
+        if(data) {
+            this.userBehaviour = data.applicantDetails.behaviourPattern
+        }
+    })
+  }
 
+  ngOnDestroy(): void {
+      this._applicant.currentApplicant.unsubscribe()
   }
 
   update() {
     this._applicantDetailsService.AnyPattern = this.userBehaviour
+    this._applicant.toBeUpdateApplicant!.applicantDetails!.behaviourPattern = this.userBehaviour
 }
 
 }

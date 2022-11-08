@@ -5,24 +5,27 @@
             <div class="formgroup-inline">
                 <div class="field">
                     <label htmlFor="name">Name</label>
-                    <input pInputText id="name1" type="text" />
+                    <input pInputText id="name1" [(ngModel)]="this.currentApplicant.name" (change)="updateFields()"
+                        type="text" />
                 </div>
                 <div class="field">
                     <label htmlFor="applicantId">Applicant Id</label>
-                    <input pInputText id="applicantId" type="text" disabled />
+                    <input pInputText id="applicantId" type="text" [(ngModel)]="this.currentApplicant.applicantId"
+                        disabled />
                 </div>
 
                 <div class="field">
                     <label htmlFor="serialNumber">SerialNumber</label>
-                    <input pInputText id="serialNumber" type="text" />
+                    <input pInputText id="serialNumber" (change)="updateFields()"
+                        [(ngModel)]="this.currentApplicant.serialNumber" type="text" />
                 </div>
                 <div class="field">
                     <label htmlFor="tokken">Tokken</label>
-                    <input pInputText id="tokken" type="text" />
+                    <input pInputText id="tokken" type="text" (change)="updateFields()"
+                        [(ngModel)]="this.currentApplicant.tokken" />
                 </div>
 
             </div>
-            <button pButton label="Update"></button>
         </div>
     </div>
 
@@ -48,7 +51,8 @@
             <!-- L-parking -->
             <app-lparking-checkbox></app-lparking-checkbox>
             <!-- L-parking Ends -->
-            <button pButton label="Update"></button>
+            <button pButton label="Update" [disabled]="!this.currentApplicant.applicantDetails"
+                (click)="update()"></button>
 
         </div>
     </div>
