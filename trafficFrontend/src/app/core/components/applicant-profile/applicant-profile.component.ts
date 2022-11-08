@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Applicant } from '../../models/applicant.model';
 import { ApplicantService } from '../../service/applicant.service';
 
@@ -7,7 +7,7 @@ import { ApplicantService } from '../../service/applicant.service';
   templateUrl: './applicant-profile.component.html',
   styleUrls: ['./applicant-profile.component.scss']
 })
-export class ApplicantProfileComponent implements OnInit {
+export class ApplicantProfileComponent implements OnInit{
 
     valCheck:boolean = false;
 
@@ -27,6 +27,7 @@ export class ApplicantProfileComponent implements OnInit {
       this.currentApplicant = data;
     })
   }
+
 
   updateFields() {
     this._applicantService.toBeUpdateApplicant!.name = this.currentApplicant.name;

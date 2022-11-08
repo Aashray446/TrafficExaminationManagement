@@ -43,7 +43,7 @@ export class LoginComponent {
 
                     this.UserService.loggedUser.next(response.content.user);
 
-                    return response.content.user.role == Role.Admin ? this._router.navigate(['/admin'])
+                    return response.content.user.role == Role.Admin ? this._router.navigate(['/admin/applicant-list'])
                            : response.content.user.role == Role.EightOfficer ? this._router.navigate(['/officers/eightOfficer'])
                            : response.content.user.role == Role.BehaviourOfficer ? this._router.navigate(['/officers/behaviourOfficer'])
                            : response.content.user.role == Role.LParkingOfficer ? this._router.navigate(['/officers/lParkingOfficer'])
