@@ -160,7 +160,6 @@ export class MidOfficerComponent implements OnInit {
 
     // logout
     logout() {
-        localStorage.removeItem('token')
-        localStorage.removeItem('user')
+        localStorage.clear();
     }
 }

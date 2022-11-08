@@ -20,7 +20,7 @@
                 <ng-template pTemplate="right">
                     <button pButton pRipple icon="pi pi-upload" class="p-button-help mr-2"
                         (click)="dt.exportCSV()"></button>
-                    <button pButton pRipple icon="pi pi-power-off" routerLink="['']" (click)="logout()"
+                    <button pButton pRipple icon="pi pi-power-off" [routerLink]="'/'" (click)="logout()"
                         class="p-button-danger"></button>
                 </ng-template>
             </p-toolbar>

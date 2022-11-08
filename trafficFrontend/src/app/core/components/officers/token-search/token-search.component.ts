@@ -31,4 +31,8 @@ export class TokenSearchComponent implements OnInit, OnDestroy {
         this.applicantDetail.updateApplicantDetails();
     }
 
+    logout() {
+        localStorage.clear();
+    }
+
 }

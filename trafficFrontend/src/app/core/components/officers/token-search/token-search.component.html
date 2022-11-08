@@ -10,7 +10,8 @@
             <ng-template pTemplate="right">
                 <button pButton class="mr-4 p-button-primary" (click)="send()" type="button"
                     label="Save Details"></button>
-                <button pButton pRipple icon="pi pi-power-off" routerLink="['']" class="p-button-danger"></button>
+                <button pButton pRipple icon="pi pi-power-off" (click)="logout()" [routerLink]="'/'"
+                    class="p-button-danger"></button>
             </ng-template>
         </p-toolbar>
 
