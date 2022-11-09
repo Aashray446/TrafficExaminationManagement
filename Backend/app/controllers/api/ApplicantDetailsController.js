@@ -1,6 +1,6 @@
 // Facades:
-const ApplicantDetails = require('#facades/ApplicantDetails');
-const Applicant = require('#facades/Applicant');
+const ApplicantDetails = require('#facades/applicantDetails');
+const Applicant = require('#facades/applicant');
 // Reponse protocols.
 const {
     createOKResponse,

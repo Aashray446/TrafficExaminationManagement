@@ -1,6 +1,6 @@
 // Facades:
-const Applicant = require('#facades/Applicant');
-const ApplicantDetails = require('#facades/ApplicantDetails');
+const Applicant = require('#facades/applicant');
+const ApplicantDetails = require('#facades/applicantDetails');
 const baseUrl = process.env.HOST
 const sharp = require('sharp');
 const path = require('path');
