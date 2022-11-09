@@ -12,14 +12,14 @@ const connection = new Sequelize(
 	Configs.username,
 	Configs.password,
 	{
-		host:Configs.host,
-		port:Configs.port,
-		dialect:Configs.dialect,
-		pool:Configs.pool,
-		charset:Configs.charset,
-		collate:Configs.collate, 
-		timestamps:Configs.timestamps,
-		logging:Configs.logging
+		host: Configs.host,
+		port: Configs.port,
+		dialect: Configs.dialect,
+		pool: Configs.pool,
+		charset: Configs.charset,
+		collate: Configs.collate,
+		timestamps: Configs.timestamps,
+		logging: Configs.logging
 	}
 );
 
@@ -34,7 +34,7 @@ function DBService(environment) {
 	);
 
 	const _start = async () => {
-		try{
+		try {
 			// Test database connection.
 			_authenticateDB();
 
@@ -52,25 +52,25 @@ function DBService(environment) {
 
 			return Promise.resolve(this.connection);
 		}
-		catch(error) {
+		catch (error) {
 			console.error('Unable to connect to the database:', error)
 			return Promise.reject(error);
 		}
 	};
 
 	return {
-		start:_start
+		start: _start
 	};
 };
 
-function _migrate(environment, force=false) {
+function _migrate(environment, force = false) {
 	// Validation of NODE_ENV.
-	if (environment !== 'development'){
+	if (environment !== 'development') {
 		console.error(`Could not migrate in env ${environment}`);
 		return;
 	}
 	// Validation of 'force' parameter.
-	else if (typeof force !== 'boolean'){
+	else if (typeof force !== 'boolean') {
 		console.error("Wrong force parameter; must be boolean");
 		return;
 	}
@@ -80,28 +80,28 @@ function _migrate(environment, force=false) {
 	)
 
 	return connection
-	.authenticate()
-	.then(() => {
-		console.log('Models to sync:', connection.models);
-		
-		return _associateModels(connection.models)
-		.then(() => connection.sync({ force }))
-		.then(() => _successfulDBMigration())
+		.authenticate()
+		.then(() => {
+			console.log('Models to sync:', connection.models);
+
+			return _associateModels(connection.models)
+				.then(() => connection.sync({ force }))
+				.then(() => _successfulDBMigration())
+				.catch(error => console.error(error));
+		})
 		.catch(error => console.error(error));
-	})
-	.catch(error => console.error(error));
 }
 
 async function _associateModels(models) {
 	return new Promise((resolve, reject) => {
-		try{
+		try {
 			Object.keys(models).map(modelName => (
 				models[modelName].associate(models)
 			));
 
 			return resolve(models);
 		}
-		catch(error){
+		catch (error) {
 			reject(error);
 		}
 	});

@@ -8,14 +8,13 @@ module.exports = {
 	host: process.env.DB_HOST || 'localhost',
 	port: process.env.DB_PORT || '3306',
 	dialect: process.env.DB_DIALECT || 'mysql' || 'postgres',
-
 	pool: {
 		max: 5,
 		min: 0,
 		idle: 10000,
 	},
 	charset: CHARSET,
-	collate: COLLATE, 
+	collate: COLLATE,
 	timestamps: true,
-	logging:false
+	logging: false
 }
