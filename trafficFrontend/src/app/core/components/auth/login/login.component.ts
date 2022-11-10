@@ -53,7 +53,6 @@ export class LoginComponent {
                             : this._router.navigate(['/login']);
                 },
                 error: (error) => {
-                    console.log(error)
                     this._message.add({severity:'error', summary:'Error', detail:error.error.error.message});
                 }
             }

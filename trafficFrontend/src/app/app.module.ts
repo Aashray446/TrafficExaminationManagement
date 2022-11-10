@@ -9,11 +9,12 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { AuthGuard } from './core/service/auth.guard';
-
-
+import { LoaderInterceptor } from './core/service/loader.interceptor';
+import { CommonModule } from '@angular/common';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 @NgModule({
     declarations: [AppComponent, NotfoundComponent],
-    imports: [AppRoutingModule, AppLayoutModule,ToastModule ],
+    imports: [AppRoutingModule, AppLayoutModule,ToastModule, CommonModule, ProgressSpinnerModule],
     providers: [
         MessageService,
         { provide: LocationStrategy,
@@ -21,6 +22,11 @@ import { AuthGuard } from './core/service/auth.guard';
         {
             provide : HTTP_INTERCEPTORS,
             useClass : AuthInterceptor,
+            multi : true
+        },
+        {
+            provide : HTTP_INTERCEPTORS,
+            useClass : LoaderInterceptor,
             multi : true
         },
         AuthGuard
