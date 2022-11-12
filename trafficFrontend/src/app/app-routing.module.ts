@@ -23,6 +23,7 @@ import { AuthGuard } from './core/service/auth.guard';
                     ],
                 },
                 {path: 'mid-officer', loadChildren: () => import('./core/components/mid-officer/mid-officer.module').then( (m) => m.MidOfficerModule), canActivate: [AuthGuard]},
+                {path: 'search-officer', loadChildren: () => import('./core/components/search-officer/search-officer.module').then( (m) => m.SearchOfficerModule), canActivate: [AuthGuard]},
                 {path: 'officers', loadChildren: () => import('./core/components/officers/officers.module').then((m) => m.OfficersModule), canActivate: [AuthGuard]},
                 { path: '**', redirectTo: 'pages/notfound' },
             ],

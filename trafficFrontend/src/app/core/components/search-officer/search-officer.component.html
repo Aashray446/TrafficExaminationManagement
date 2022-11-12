@@ -1,0 +1,90 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card px-6 py-6">
+            <p-toolbar styleClass="mb-4">
+                <div>
+                    <p>Welcome User</p>
+                </div>
+
+
+                <button pButton pRipple icon="pi pi-power-off" [routerLink]="'/'" (click)="logout()"
+                    class="p-button-danger"></button>
+            </p-toolbar>
+
+        </div>
+
+
+    </div>
+
+    <div class="grid p-4">
+        <div class="col-12">
+            <div class="card">
+                <h5>Enter Tokken Number</h5>
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search" (click)="getByTokken()"></i>
+                    <input type="text" [(ngModel)]="tokken" (keyup.enter)="getByTokken()" pInputText />
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="grid p-4" *ngIf="this.applicant">
+        <div class="card col-12 m-2 lg:col-4">
+
+            <p>Name : Aashraya Katiyar</p>
+            <p>Applicant ID : 9 </p>
+            <p>Serial Number : 1246 </p>
+            <p>Tokken : 45</p>
+        </div>
+
+        <div class="card col-12 m-2 lg:col-4">
+            <h5>Eight Pattern</h5>
+            <p>Line touch (-5)</p>
+            <p>Pole Touch (-5)</p>
+            <p>Fail</p>
+        </div>
+
+        <div class="card col-12 m-2 lg:col-4">
+            <h5>Behaviour</h5>
+            <p>-3 , -4, -3</p>
+            <p>fail</p>
+            <p>Remark</p>
+        </div>
+
+        <div class="card col-12 m-2 lg:col-4">
+            <h5>Traffic Lights</h5>
+            <p>U Turn (-10)</p>
+            <p>Traffic Lights (-15)</p>
+            <p>Fail</p>
+        </div>
+
+        <div class="card col-12 m-2 lg:col-4">
+            <h5>Ramp Challenge</h5>
+            <p>First Breaker (-5)</p>
+            <p>Second Breaker (-5)</p>
+            <p>Fail</p>
+            <p>Remarks</p>
+        </div>
+
+        <div class="card col-12 m-2 lg:col-4">
+            <h5>L parking</h5>
+            <p>Once Forwarded (-10)</p>
+            <p>Line touch fail</p>
+            <p>Fail</p>
+        </div>
+
+
+        <div class="col-12 ">
+            <div class="card">
+                <h5>Pass Status</h5>
+                <p-selectButton [options]="passOptions" [(ngModel)]="passStatus" optionLabel="name">
+                </p-selectButton>
+
+                <hr>
+                <button pButton (click)="update()">Submit</button>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -17,7 +17,8 @@ export class ApplicantProfileComponent implements OnInit{
     serialNumber: '',
     tokken: 0,
     photo: '',
-    applicantDetails: null
+    applicantDetails: null,
+    passStatus: null
     }
 
   constructor(private _applicantService : ApplicantService) { }

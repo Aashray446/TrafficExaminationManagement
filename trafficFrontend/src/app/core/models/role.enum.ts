@@ -6,4 +6,5 @@ export enum Role {
     LParkingOfficer = "LParkingOfficer",
     BehaviourOfficer = "BehaviourOfficer",
     MidLevelOfficer = "MidLevelOfficer",
+    SearchOfficer = "SearchOfficer",
 }

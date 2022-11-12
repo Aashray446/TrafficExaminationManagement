@@ -21,6 +21,7 @@ export class AuthGuard implements CanActivate {
         return !user ? false
             : user.role === Role.Admin && urlSegmet[1] === 'admin' ? true
             : user.role === Role.MidLevelOfficer && urlSegmet[1] === 'mid-officer' ? true
+            : user.role === Role.SearchOfficer && urlSegmet[1] === 'search-officer' ? true
             : user.role === Role.EightOfficer && urlSegmet[2] === 'eightOfficer' ? true
             : user.role === Role.TrafficLightOfficer && urlSegmet[2] === 'trafficLightOfficer' ? true
             : user.role === Role.RampOfficer && urlSegmet[2] === 'rampOfficer' ? true

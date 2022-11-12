@@ -56,7 +56,39 @@ export class ApplicantService {
             {
                 next : (result:any)=> {
                     this._message.add({severity:'success', summary: 'Success', detail: result.message});
+                    this.currentApplicant.next(null)
+                },
+                error : (error:any)=> {
+                    this._message.add({severity:'error', summary: 'Error', detail: error.error.error.message});
+                }
+            })
+    }
 
+    public getByTokken (tokken :String) {
+
+        this._http.get( environment.apiBaseUrl + '/private/applicantDetails/search-by-token/' + tokken).subscribe({
+            next: (data:any) => {
+                if(data.content.applicant[0]) {
+                    this.currentApplicant.next(data.content.applicant[0]);
+                    return
+                }
+
+                this._message.add({severity:'error', summary:'Error', detail:'No Tokken found'});
+
+            },
+            error: (err) => {
+                this._message.add({severity:'error', summary:'Error', detail:err.error.error.message} );
+            }
+        }
+        )
+    }
+
+    public finalUpdate() {
+        this._http.post( environment.apiBaseUrl + '/private/applicant/updatePassStatus', this.toBeUpdateApplicant).subscribe(
+            {
+                next : (result:any)=> {
+                    this._message.add({severity:'success', summary: 'Success', detail: result.message});
+                    this.currentApplicant.next(null)
                 },
                 error : (error:any)=> {
                     this._message.add({severity:'error', summary: 'Error', detail: error.error.error.message});

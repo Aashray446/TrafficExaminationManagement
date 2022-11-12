@@ -6,6 +6,7 @@ export class Applicant {
     tokken: number | null;
     photo: String;
     applicantDetails : ApplicantDetails | null;
+    passStatus : boolean | null;
 
     constructor(applicantId: number, name: string, serialNumber: string, tokken: number, photo: String) {
         this.applicantId = applicantId;
@@ -14,6 +15,7 @@ export class Applicant {
         this.tokken = tokken;
         this.photo = photo;
         this.applicantDetails = null;
+        this.passStatus = null;
     }
 
 

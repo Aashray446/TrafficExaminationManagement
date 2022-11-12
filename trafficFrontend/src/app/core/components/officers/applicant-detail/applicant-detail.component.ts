@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Applicant } from 'src/app/core/models/applicant.model';
 import { ApplicantDetailsService } from 'src/app/core/service/applicant-details.service';
 
@@ -7,7 +7,7 @@ import { ApplicantDetailsService } from 'src/app/core/service/applicant-details.
   templateUrl: './applicant-detail.component.html',
   styleUrls: ['./applicant-detail.component.scss']
 })
-export class ApplicantDetailComponent implements OnInit, OnDestroy{
+export class ApplicantDetailComponent implements OnInit {
 
     applicant : Applicant | null = null;
 
@@ -31,8 +31,6 @@ export class ApplicantDetailComponent implements OnInit, OnDestroy{
         })
   }
 
-  ngOnDestroy(): void {
-      this._applicantDetails.currentApplicant.unsubscribe();
-  }
+
 
 }

@@ -50,6 +50,7 @@ export class LoginComponent {
                             : response.content.user.role == Role.RampOfficer ? this._router.navigate(['/officers/rampOfficer'])
                             : response.content.user.role == Role.TrafficLightOfficer ? this._router.navigate(['/officers/trafficLightOfficer'])
                             : response.content.user.role == Role.MidLevelOfficer ? (this._router.navigate(['/mid-officer']))
+                            : response.content.user.role == Role.SearchOfficer ? (this._router.navigate(['/search-officer']))
                             : this._router.navigate(['/login']);
                 },
                 error: (error) => {

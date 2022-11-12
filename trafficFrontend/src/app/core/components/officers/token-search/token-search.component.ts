@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Applicant } from 'src/app/core/models/applicant.model';
 import { ApplicantDetailsService } from 'src/app/core/service/applicant-details.service';
 
@@ -7,7 +7,7 @@ import { ApplicantDetailsService } from 'src/app/core/service/applicant-details.
   templateUrl: './token-search.component.html',
   styleUrls: ['./token-search.component.scss']
 })
-export class TokenSearchComponent implements OnInit, OnDestroy {
+export class TokenSearchComponent implements OnInit {
 
     tokken = "";
     applicant :Applicant | null = null;
@@ -19,9 +19,9 @@ export class TokenSearchComponent implements OnInit, OnDestroy {
         });
     }
 
-    ngOnDestroy(): void {
-        this.applicantDetail.currentApplicant.unsubscribe();
-    }
+    // ngOnDestroy(): void {
+    //     this.applicantDetail.currentApplicant.unsubscribe();
+    // }
 
     searchByToken() {
         this.applicantDetail.searchByToken(this.tokken);
