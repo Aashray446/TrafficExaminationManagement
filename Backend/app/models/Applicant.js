@@ -20,10 +20,15 @@ const Applicant = database.define(
             type: DataTypes.INTEGER(),
         },
         tokken: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            allowNull: true
         },
         photo: {
             type: DataTypes.STRING(255)
+        },
+        passStatus: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true,
         }
     },
     {

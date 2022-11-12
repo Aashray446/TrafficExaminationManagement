@@ -171,6 +171,25 @@ function ApplicantController() {
     }
 
 
+    const _updatePassStatus = async (req, res) => {
+        try {
+            const applicantDetails = req.body;
+            const result = await Applicant.updatePassStatus(applicantDetails);
+
+            // Everything's fine, send response.
+            return createOKResponse({
+                res,
+                content: {
+                    applicant: result
+                }
+            });
+
+        }
+        catch (error) {
+            console.error("UsersController._create error: ", error);
+            return _processError(error, req, res);
+        }
+    }
 
 
 
@@ -180,8 +199,8 @@ function ApplicantController() {
         getAll: _getAll,
         delete: _delete,
         getById: _getById,
-        update: _update
-
+        update: _update,
+        updatePassStatus: _updatePassStatus
     }
 
 

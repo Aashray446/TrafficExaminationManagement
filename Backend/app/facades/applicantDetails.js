@@ -39,6 +39,8 @@ async function _create(ApplicantDetails, applicantId) {
             ApplicantApplicantId: applicantId
         });
 
+
+
         // Prepare output.
         const result = [
             response

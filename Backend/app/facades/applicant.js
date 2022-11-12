@@ -6,18 +6,17 @@ const { Err } = require('#factories/errors');
 
 
 module.exports = {
-    // Auth:
+
     create: _create,
     update: _update,
     delete: _delete,
     getAll: _getAll,
-    // Private:
+
 
     search: _search,
     getById: _getById,
-    // Add your methods here...
+    updatePassStatus: _updatePassStatus
 
-    // Private\
 }
 
 // Auth:
@@ -106,7 +105,7 @@ async function _delete(ApplicantDetails) {
 
 }
 
-async function _search(data, type) {
+async function _search(data, type, role) {
     try {
         // Try to find user.
         const applicant = await Applicant.findAll({
@@ -114,6 +113,16 @@ async function _search(data, type) {
                 [type]: data
             }
         });
+
+        if (applicant.length == 0) {
+            throw Error("Tokken Not Found")
+        }
+
+        if (type == "tokken") {
+            if (await checkIfCompleted(role, applicant[0].applicantId)) {
+                throw Error('Applicant Data Already Filled')
+            }
+        }
 
         // Send output.
         return Promise.resolve(applicant);
@@ -160,4 +169,60 @@ async function _getById(id) {
     catch (error) {
         return Promise.reject(error);
     }
+}
+
+// udpate passStatus
+async function _updatePassStatus(ApplicantDetails) {
+    try {
+        // Try to find user.
+
+        const result = await Applicant.update(
+            { passStatus: ApplicantDetails.passStatus, tokken: null },
+            { where: { applicantId: ApplicantDetails.applicantId } }
+        );
+
+        //  If user not found, throw error with name UserNotFound:
+        if (result[0] == 0) {
+            const err = new Err('Applicant not found');
+            err.name = "ApplicantNotFound";
+            throw err;
+        }
+
+        // Send output.
+        return Promise.resolve([result]);
+    }
+    catch (error) {
+        return Promise.reject(error);
+    }
+
+}
+
+// Business logic
+
+const checkIfCompleted = async (role, applicantId) => {
+
+    const result = await ApplicantDetails.findOne({
+        where: {
+            ApplicantApplicantId: applicantId
+        }
+    })
+
+    if (role == "EightOfficer" && result.eightPattern) {
+        return true
+    }
+    if (role == "TrafficLightOfficer" && result.trafficLightPattern) {
+        return true
+    }
+    if (role == "RampOfficer" && result.rampPattern) {
+        return true
+    }
+
+    if (role == "LParkingOfficer" && result.lParkingPattern) {
+        return true
+    }
+
+    if (role == "BehaviourOfficer" && result.behaviourPattern) {
+        return true
+    }
+    return false
 }

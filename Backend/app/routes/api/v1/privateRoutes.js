@@ -14,5 +14,5 @@ module.exports = {
 	'POST /applicantDetails/create ': 'ApplicantDetailsController.create',
 	'GET /applicantDetails/search-by-token/:tokken': 'ApplicantDetailsController.searchByToken',
 	'POST /applicantDetails/update': 'ApplicantDetailsController.update',
-
+	'POST /applicant/updatePassStatus': 'ApplicantController.updatePassStatus',
 };

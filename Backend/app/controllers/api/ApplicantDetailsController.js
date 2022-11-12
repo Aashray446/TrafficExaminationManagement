@@ -104,8 +104,7 @@ function ApplicantController() {
 
             const tokken = req.params['tokken'];
 
-            const result = await Applicant.search(tokken, 'tokken');
-
+            const result = await Applicant.search(tokken, 'tokken', req.token.role);
             // Everything's fine, send response.
             return createOKResponse({
                 res,
@@ -124,6 +123,14 @@ function ApplicantController() {
         try {
             let applicant;
             const id = req.body.applicantId;
+
+            if (req.body.fail) {
+                await Applicant.updatePassStatus({
+                    applicantId: id,
+                    passStatus: false,
+                })
+            }
+
             switch (req.token.role) {
                 case 'EightOfficer':
                     applicant = await ApplicantDetails.updateEightPattern(id, req.body);
@@ -149,11 +156,6 @@ function ApplicantController() {
                         status: 401
                     });
             }
-
-            // const applicantDetails = req.body.applicantDetails;
-            // const applicantId = req.body.applicant.applicantId;
-
-            // const applicant = await ApplicantDetails.update(applicantDetails, applicantId);
 
             // Everything's fine, send response.
             return createOKResponse({
