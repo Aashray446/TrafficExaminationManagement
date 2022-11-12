@@ -21,7 +21,7 @@
                 <div class="card">
                     <h5>Enter Tokken Number</h5>
                     <span class="p-input-icon-right">
-                        <i class="pi pi-search"></i>
+                        <i class="pi pi-search" (click)="searchByToken()"></i>
                         <input type="text" [(ngModel)]="tokken" (keyup.enter)="searchByToken()" pInputText />
                     </span>
                 </div>

@@ -15,7 +15,7 @@ export class ApplicantProfileComponent implements OnInit{
     applicantId: 0,
     name: '',
     serialNumber: '',
-    tokken: 0,
+    tokken: null,
     photo: '',
     applicantDetails: null,
     passStatus: null
@@ -25,7 +25,20 @@ export class ApplicantProfileComponent implements OnInit{
 
   ngOnInit(): void {
     this._applicantService.currentApplicant.subscribe((data)=>{
-      this.currentApplicant = data;
+        if(data) {
+            this.currentApplicant = data
+        }
+        else {
+            this.currentApplicant = {
+                applicantId: 0,
+                name: '',
+                serialNumber: '',
+                tokken: 0,
+                photo: '',
+                applicantDetails: null,
+                passStatus: null
+                }
+        }
     })
   }
 

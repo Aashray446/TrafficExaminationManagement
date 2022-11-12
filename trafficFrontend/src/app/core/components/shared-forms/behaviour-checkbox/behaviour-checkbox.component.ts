@@ -24,7 +24,9 @@ export class BehaviourCheckboxComponent implements OnInit {
   ngOnInit(): void {
     this._applicant.currentApplicant.subscribe((data)=>{
         if(data) {
+            if(data.applicantDetails.behaviourPattern) {
             this.userBehaviour = data.applicantDetails.behaviourPattern
+            }
         }
     })
   }
