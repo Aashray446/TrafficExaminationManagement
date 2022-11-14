@@ -142,6 +142,15 @@ async function _search(data, type, role) {
             }
         }
 
+        const applicantDetails = await ApplicantDetails.findOne({
+            where: {
+                ApplicantApplicantId: applicant[0].applicantId
+            }
+        });
+
+
+        applicant[0].dataValues.applicantDetails = applicantDetails
+
         // Send output.
         return Promise.resolve(applicant);
     }
