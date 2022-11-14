@@ -26,8 +26,8 @@ export class SearchOfficerComponent implements OnInit {
 
   ngOnInit(): void {
     this.applicantService.currentApplicant.subscribe((data) => {
-        console.log(data)
         this.applicant = data;
+        console.log(this.applicant)
     });
   }
 

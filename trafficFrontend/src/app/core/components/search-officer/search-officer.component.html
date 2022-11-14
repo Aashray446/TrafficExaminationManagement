@@ -30,46 +30,50 @@
     <div class="grid p-4" *ngIf="this.applicant">
         <div class="card col-12 m-2 lg:col-4">
 
-            <p>Name : Aashraya Katiyar</p>
-            <p>Applicant ID : 9 </p>
-            <p>Serial Number : 1246 </p>
-            <p>Tokken : 45</p>
+            <p>Name : {{this.applicant.name}}</p>
+            <p>Applicant ID : {{this.applicant.applicantId}} </p>
+            <p>Serial Number : {{this.applicant.serialNumber}}</p>
+            <p>Tokken : {{this.applicant.tokken}}</p>
         </div>
 
         <div class="card col-12 m-2 lg:col-4">
             <h5>Eight Pattern</h5>
-            <p>Line touch (-5)</p>
-            <p>Pole Touch (-5)</p>
-            <p>Fail</p>
+            <p *ngIf="this.applicant.applicantDetails?.eightPattern?.lineTouch">Line touch (-5) </p>
+            <p *ngIf=" this.applicant.applicantDetails?.eightPattern?.poleTouch">Pole Touch (-5) {{
+                this.applicant.applicantDetails?.eightPattern?.poleTouch }} </p>
+            <p *ngIf="this.applicant.applicantDetails?.eightPattern?.fail">Fail </p>
         </div>
 
         <div class="card col-12 m-2 lg:col-4">
             <h5>Behaviour</h5>
-            <p>-3 , -4, -3</p>
-            <p>fail</p>
-            <p>Remark</p>
+            <p> Negative Points <span *ngIf="this.applicant.applicantDetails?.behaviourPattern?.first">-3</span>
+                <span *ngIf="this.applicant.applicantDetails?.behaviourPattern?.second">, -4</span>
+                <span *ngIf="this.applicant.applicantDetails?.behaviourPattern?.third">, -3</span>
+            </p>
+            <p *ngIf="this.applicant.applicantDetails?.behaviourPattern?.fail">Fail</p>
+            <p>{{this.applicant.applicantDetails?.behaviourPattern?.failRemarks}}</p>
         </div>
 
         <div class="card col-12 m-2 lg:col-4">
             <h5>Traffic Lights</h5>
-            <p>U Turn (-10)</p>
-            <p>Traffic Lights (-15)</p>
-            <p>Fail</p>
+            <p *ngIf="this.applicant.applicantDetails?.trafficLightPattern?.uTurn">U Turn (-10)</p>
+            <p *ngIf="this.applicant.applicantDetails?.trafficLightPattern?.trafficLight">Traffic Lights (-15)</p>
+            <p *ngIf="this.applicant.applicantDetails?.trafficLightPattern?.fail">Fail</p>
         </div>
 
         <div class="card col-12 m-2 lg:col-4">
             <h5>Ramp Challenge</h5>
-            <p>First Breaker (-5)</p>
-            <p>Second Breaker (-5)</p>
-            <p>Fail</p>
-            <p>Remarks</p>
+            <p *ngIf="this.applicant.applicantDetails?.rampPattern?.breakerOne">First Breaker (-5)</p>
+            <p *ngIf="this.applicant.applicantDetails?.rampPattern?.breakerTwo">Second Breaker (-5)</p>
+            <p *ngIf="this.applicant.applicantDetails?.rampPattern?.fail">Fail</p>
+            <p>{{this.applicant.applicantDetails?.rampPattern?.failRemarks}}</p>
         </div>
 
         <div class="card col-12 m-2 lg:col-4">
             <h5>L parking</h5>
-            <p>Once Forwarded (-10)</p>
-            <p>Line touch fail</p>
-            <p>Fail</p>
+            <p *ngIf="this.applicant.applicantDetails?.lParkingPattern?.onceForwarded">Once Forwarded (-10)</p>
+            <p *ngIf="this.applicant.applicantDetails?.lParkingPattern?.lineTouchFail">Line touch fail</p>
+            <p *ngIf="this.applicant.applicantDetails?.lParkingPattern?.fail">Fail</p>
         </div>
 
 
