@@ -191,6 +191,23 @@ function ApplicantController() {
         }
     }
 
+    const _getAllByDate = async (req, res) => {
+        try {
+            const applicants = await Applicant.getAllByDate(req.body.date, req.body.type);
+
+            // Everything's fine, send response.
+            return createOKResponse({
+                res,
+                content: {
+                    applicant: applicants[0]
+                }
+            });
+        }
+        catch (error) {
+            console.error("UsersController._create error: ", error);
+            return _processError(error, req, res);
+        }
+    }
 
 
     return {
@@ -200,7 +217,8 @@ function ApplicantController() {
         delete: _delete,
         getById: _getById,
         update: _update,
-        updatePassStatus: _updatePassStatus
+        updatePassStatus: _updatePassStatus,
+        getAllByDate: _getAllByDate
     }
 
 

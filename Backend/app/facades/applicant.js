@@ -1,6 +1,7 @@
 // Reference models.
 const Applicant = require('#models/Applicant');
 const ApplicantDetails = require('#models/ApplicantDetails')
+const { Op } = require('sequelize');
 
 const { Err } = require('#factories/errors');
 
@@ -15,7 +16,8 @@ module.exports = {
 
     search: _search,
     getById: _getById,
-    updatePassStatus: _updatePassStatus
+    updatePassStatus: _updatePassStatus,
+    getAllByDate: _getAllByDate
 
 }
 
@@ -252,4 +254,70 @@ const checkIfCompleted = async (role, applicantId) => {
         return true
     }
     return false
+}
+
+
+async function _getAllByDate(date, type) {
+    try {
+
+        if (type == null) {
+            const applicant = await Applicant.findAll({
+                where: {
+                    createdAt: {
+                        [Op.lt]: date + ' 23:59:59',
+                        [Op.gt]: date + ' 00:00:00'
+                    }
+                },
+                include: [
+                    {
+                        model: ApplicantDetails,
+                    }
+                ]
+            });
+
+            return Promise.resolve([applicant]);
+        }
+        if (type == true) {
+            const applicant = await Applicant.findAll({
+                where: {
+                    createdAt: {
+                        [Op.lt]: date + ' 23:59:59',
+                        [Op.gt]: date + ' 00:00:00'
+                    },
+                    passStatus: true
+                },
+                include: [
+                    {
+                        model: ApplicantDetails,
+                    }
+                ]
+            });
+
+            return Promise.resolve([applicant]);
+        }
+
+        if (type == false) {
+            const applicant = await Applicant.findAll({
+                where: {
+                    createdAt: {
+                        [Op.lt]: date + ' 23:59:59',
+                        [Op.gt]: date + ' 00:00:00'
+                    },
+                    passStatus: false
+                },
+                include: [
+                    {
+                        model: ApplicantDetails,
+                    }
+                ]
+            });
+
+            return Promise.resolve([applicant]);
+        }
+        // Send output.
+
+    }
+    catch (error) {
+        return Promise.reject(error);
+    }
 }
