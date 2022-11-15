@@ -11,6 +11,7 @@ export class ApplicantService {
 
     public currentApplicant : Subject<any> = new Subject<null>();
     public toBeUpdateApplicant : Applicant | null = null;
+    public currentApplicants : Subject<any> = new Subject<null>();
 
   constructor(private _http : HttpClient, private _message :MessageService) { }
 
@@ -95,5 +96,25 @@ export class ApplicantService {
                 }
             })
     }
+
+    public getByDate(date: string, type:boolean | null) {
+
+        this._http.post( environment.apiBaseUrl + '/private/applicant/getAllByDate/', {date : date, type : type}).subscribe({
+            next: (data:any) => {
+                if(data.content.applicant.length > 0) {
+                    this.currentApplicants.next(data.content.applicant);
+                    return
+                }
+
+                this._message.add({severity:'error', summary:'Error', detail:'No Applicant found'});
+
+            },
+            error: (err) => {
+                this._message.add({severity:'error', summary:'Error', detail:err.error.error.message} );
+            }
+        }
+        )
+    }
+
 
 }

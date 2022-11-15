@@ -1,0 +1,69 @@
+<div class="card">
+    <p-calendar class="m-3" dateFormat="dd.mm.yy" [(ngModel)]="selectedDate"></p-calendar>
+
+    <div class="m-3">
+        <button pButton type="button" label="Pass Result" (click)="getResult(true)"
+            class="p-button-success mr-3"></button>
+        <button pButton type="button" label="Fail Result" (click)="getResult(false)"
+            class="p-button-warning mr-3"></button>
+        <button pButton type="button" label="All" (click)="getResult(null)" class="p-button-help mr-3"></button>
+
+    </div>
+
+</div>
+
+<div class="grid">
+    <div style="overflow-x:auto;">
+        <table id="resultTable">
+            <tr>
+                <th>S.N</th>
+                <th>Applicant ID</th>
+                <th>Name</th>
+                <th>Serial Number</th>
+                <th>8 Test</th>
+                <th>U Turn</th>
+                <th>Traffic Light</th>
+                <th>Hurdles</th>
+                <th>Behaviour</th>
+                <th>Obtained Marks</th>
+                <th>Result</th>
+                <th>Remarks</th>
+            </tr>
+            <tr *ngFor="let applicant of applicants; index as i">
+                <td>{{i}}</td>
+                <td>{{applicant.applicantId}}</td>
+                <td>{{applicant.name}}</td>
+                <td>{{applicant.serialNumber}}</td>
+                <td>
+                    <span *ngIf="applicant.ApplicantDetail?.eightPattern?.lineTouch">(-5) </span>
+                    <span *ngIf=" applicant.ApplicantDetail?.eightPattern?.poleTouch">(-5) </span>
+                    <span *ngIf="applicant.ApplicantDetail?.eightPattern?.fail">Fail</span>
+                </td>
+                <td>
+                    <span *ngIf="applicant.ApplicantDetail?.trafficLightPattern?.uTurn">(-10) </span>
+                </td>
+                <td>
+                    <span *ngIf="applicant.ApplicantDetail?.trafficLightPattern?.trafficLight">(-15)</span>
+                    <span *ngIf="applicant.ApplicantDetail?.trafficLightPattern?.fail">Fail</span>
+                </td>
+                <td>
+                    <span *ngIf="applicant.ApplicantDetail?.rampPattern?.breakerOne">(-5)</span>
+                    <span *ngIf="applicant.ApplicantDetail?.rampPattern?.breakerTwo">(-5)</span>
+                </td>
+                <td>
+                    <span *ngIf="applicant.ApplicantDetail?.behaviourPattern?.first">(-3)</span>
+                    <span *ngIf="applicant.ApplicantDetail?.behaviourPattern?.second">(-4)</span>
+                    <span *ngIf="applicant.ApplicantDetail?.behaviourPattern?.third">(-3)</span>
+                </td>
+                <td class="text-red-700">
+                    <b>{{getObtainedMarks(applicant)}}</b>
+                </td>
+                <td>
+                    <span> {{getPassStatus(applicant)}} </span>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+    <p-button *ngIf="this.applicants.length > 0" class="m-5" label="Print Result" (click)="getPDF()"></p-button>
+</div>

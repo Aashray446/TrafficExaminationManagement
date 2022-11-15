@@ -20,6 +20,8 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CheckboxModule } from 'primeng/checkbox';
 import { SharedFormsModule } from '../shared-forms/shared-forms.module';
+import {CalendarModule} from 'primeng/calendar';
+import { ResultComponent } from './result/result.component';
 
 // ---------------
 
@@ -41,8 +43,9 @@ import { SharedFormsModule } from '../shared-forms/shared-forms.module';
         DropdownModule,
         MultiSelectModule,
         AutoCompleteModule,
-        SharedFormsModule
+        SharedFormsModule,
+        CalendarModule
     ],
-    declarations: [DashboardComponent, SearchBarComponent, ApplicantListComponent, UserDetailsComponent, ApplicantProfileComponent],
+    declarations: [DashboardComponent, SearchBarComponent, ApplicantListComponent, UserDetailsComponent, ApplicantProfileComponent, ResultComponent],
 })
 export class DashboardModule {}

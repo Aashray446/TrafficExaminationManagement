@@ -4,6 +4,7 @@ import { ApplicantListComponent } from '../applicant-list/applicant-list.compone
 import { ApplicantProfileComponent } from '../applicant-profile/applicant-profile.component';
 import { UserDetailsComponent } from '../user-details/user-details.component';
 import { DashboardComponent } from './dashboard.component';
+import { ResultComponent } from './result/result.component';
 
 @NgModule({
     imports: [
@@ -13,6 +14,7 @@ import { DashboardComponent } from './dashboard.component';
             {path: 'user-list', loadChildren: () => import('../user-list/user-list.module').then(m => m.UserListModule)},
             {path: 'applicant-list', component: ApplicantListComponent},
             {path: 'applicant-profile/:id', component: ApplicantProfileComponent},
+            {path: 'result-list', component: ResultComponent}
         ]),
     ],
     exports: [RouterModule],
