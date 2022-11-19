@@ -44,7 +44,8 @@ function ApplicantController() {
             // Perform your custom processing here...
 
             default:
-                break;
+                errorMessage = error?.message ?? 'Internal server error';
+                statusCode = 406;
         }
 
         // Send error response with provided status code.
@@ -71,7 +72,6 @@ function ApplicantController() {
 
 
             const applicant = await Applicant.create(applicantDetails)
-            console.log(applicant);
             await ApplicantDetails.create({}, applicantDetails.applicantId);
             // Everything's fine, send response.
             return createOKResponse({
@@ -82,8 +82,8 @@ function ApplicantController() {
             });
         }
         catch (error) {
-            console.error("UsersController._create error: ", error);
-            error.name = "UserFound";
+            // console.error("UsersController._create error: ", error);
+            error.message = error.errors[0].message;
             return _processError(error, req, res);
         }
     }

@@ -21,7 +21,8 @@ const Applicant = database.define(
         },
         tokken: {
             type: DataTypes.INTEGER,
-            allowNull: true
+            allowNull: true,
+            unique: true
         },
         photo: {
             type: DataTypes.STRING(255)
