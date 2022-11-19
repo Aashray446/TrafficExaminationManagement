@@ -24,7 +24,11 @@
                     <input pInputText id="tokken" type="text" (change)="updateFields()"
                         [(ngModel)]="this.currentApplicant.tokken" disabled />
                 </div>
-
+                <div class="field">
+                    <p-triStateCheckbox [(ngModel)]="this.currentApplicant.passStatus" (click)="updateFields()"
+                        label="Pass Status">
+                    </p-triStateCheckbox>
+                </div>
             </div>
         </div>
     </div>
