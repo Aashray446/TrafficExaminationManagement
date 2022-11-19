@@ -22,6 +22,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { SharedFormsModule } from '../shared-forms/shared-forms.module';
 import {CalendarModule} from 'primeng/calendar';
 import { ResultComponent } from './result/result.component';
+import {TriStateCheckboxModule} from 'primeng/tristatecheckbox';
 
 // ---------------
 
@@ -44,7 +45,8 @@ import { ResultComponent } from './result/result.component';
         MultiSelectModule,
         AutoCompleteModule,
         SharedFormsModule,
-        CalendarModule
+        CalendarModule,
+        TriStateCheckboxModule
     ],
     declarations: [DashboardComponent, SearchBarComponent, ApplicantListComponent, UserDetailsComponent, ApplicantProfileComponent, ResultComponent],
 })

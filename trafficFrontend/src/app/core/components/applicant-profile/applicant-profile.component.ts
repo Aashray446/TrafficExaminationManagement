@@ -47,6 +47,10 @@ export class ApplicantProfileComponent implements OnInit{
     this._applicantService.toBeUpdateApplicant!.name = this.currentApplicant.name;
     this._applicantService.toBeUpdateApplicant!.tokken = this.currentApplicant.tokken;
     this._applicantService.toBeUpdateApplicant!.serialNumber = this.currentApplicant.serialNumber;
+    this._applicantService.toBeUpdateApplicant!.passStatus = this.currentApplicant.passStatus;
+    console.log(this._applicantService.toBeUpdateApplicant);
+    console.log(this.currentApplicant);
+
   }
 
   update() {
