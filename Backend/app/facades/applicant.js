@@ -49,7 +49,7 @@ async function _update(applicant) {
     try {
         // Try to find user.
         let result = await Applicant.update(
-            { name: applicant.name, serialNumber: applicant.serialNumber, tokken: applicant.tokken, photo: applicant.photo },
+            { name: applicant.name, serialNumber: applicant.serialNumber, tokken: applicant.tokken, photo: applicant.photo, passStatus: applicant.passStatus },
             { where: { applicantId: applicant.applicantId } }
         );
         //  If user not found, throw error with name UserNotFound:
